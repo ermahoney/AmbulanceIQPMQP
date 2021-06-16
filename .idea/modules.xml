@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EuclideanDistance.iml" filepath="$PROJECT_DIR$/EuclideanDistance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EandMDistances.iml" filepath="$PROJECT_DIR$/EandMDistances.iml" />
     </modules>
   </component>
 </project>
