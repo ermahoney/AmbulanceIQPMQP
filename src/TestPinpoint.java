@@ -12,10 +12,24 @@ public class TestPinpoint {
     }
 
     @Test
+    void testEuclideanDistFail() {
+        Pinpoint pinpoint1 = new Pinpoint(-3,-5);
+        Pinpoint pinpoint2 = new Pinpoint(3,5);
+        assertNotEquals(16.0, Pinpoint.eDistance(pinpoint1, pinpoint2));
+    }
+
+    @Test
     void testEuclideanDistSameSpot() {
         Pinpoint pinpoint1 = new Pinpoint(3,5);
         Pinpoint pinpoint2 = new Pinpoint(3,5);
         assertEquals(0.0, Pinpoint.eDistance(pinpoint1, pinpoint2));
+    }
+
+    @Test
+    void testEuclideanDistSameSpotFail() {
+        Pinpoint pinpoint1 = new Pinpoint(3,5);
+        Pinpoint pinpoint2 = new Pinpoint(3,5);
+        assertNotEquals(1.0, Pinpoint.eDistance(pinpoint1, pinpoint2));
     }
 
     @Test
@@ -26,9 +40,23 @@ public class TestPinpoint {
     }
 
     @Test
+    void testManhattanDistFail() {
+        Pinpoint pinpoint1 = new Pinpoint(-3,-5);
+        Pinpoint pinpoint2 = new Pinpoint(3,5);
+        assertNotEquals(11.661903789690601, Pinpoint.mDistance(pinpoint1, pinpoint2));
+    }
+
+    @Test
     void testManhattanDistSameSpot() {
         Pinpoint pinpoint1 = new Pinpoint(3,5);
         Pinpoint pinpoint2 = new Pinpoint(3,5);
         assertEquals(0.0, Pinpoint.mDistance(pinpoint1, pinpoint2));
+    }
+
+    @Test
+    void testManhattanDistSameSpotFail() {
+        Pinpoint pinpoint1 = new Pinpoint(3,5);
+        Pinpoint pinpoint2 = new Pinpoint(3,5);
+        assertNotEquals(1.0, Pinpoint.mDistance(pinpoint1, pinpoint2));
     }
 }

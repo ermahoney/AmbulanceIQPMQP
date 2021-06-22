@@ -24,14 +24,12 @@ public class Pinpoint {
     public static double eDistance(Pinpoint pinpoint1, Pinpoint pinpoint2){
         double x = Math.pow(pinpoint2.x - pinpoint1.x, 2);
         double y = Math.pow(pinpoint2.y - pinpoint1.y, 2);
-        double eDist = Math.sqrt(x + y);
-        return eDist;
+        return Math.sqrt(x + y);
     }
 
     //Manhattan distance calculator
     public static double mDistance(Pinpoint pinpoint1, Pinpoint pinpoint2){
-        double mDist = Math.abs(pinpoint2.x - pinpoint1.x) + Math.abs(pinpoint2.y - pinpoint1.y);
-        return mDist;
+        return Math.abs(pinpoint2.x - pinpoint1.x) + Math.abs(pinpoint2.y - pinpoint1.y);
     }
 
 }
