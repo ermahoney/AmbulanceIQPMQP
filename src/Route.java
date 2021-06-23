@@ -32,7 +32,7 @@ public class Route {
     }
 
     //number of factors is specified at runtime
-    //input: weights, numWeights
+    //input: weights, route
     //output: weightedSum
     //for a given route, do factor methods times each weight and add up
     public static double weightedSumCalculator( Vector<Double> weights, Route myRoute){
