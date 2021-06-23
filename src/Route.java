@@ -38,9 +38,7 @@ public class Route {
     public static double weightedSumCalculator( Vector<Double> weights, Route myRoute){
         double weightedSum = 0;
         for( int i = 0; i < weights.size(); i++ ){
-            if( weights.get(i) == 0.0){
-                continue;
-            } else {
+            if( weights.get(i) != 0.0){
                 weightedSum += weights.get(i) * myRoute.factors.get(i);
             }
         }
