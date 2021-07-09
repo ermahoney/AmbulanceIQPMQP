@@ -1,6 +1,15 @@
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+/*
+============================================================================
+Name : TestPinpoint.java
+Author : Emily Mahoney
+Version :
+Copyright : Your copyright notice
+Description : tests for eDistance and mDistance in Java
+============================================================================
+*/
 
 public class TestPinpoint {
 
