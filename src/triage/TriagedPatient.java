@@ -1,3 +1,7 @@
+// Authors: Emily Mahoney, Alex Miera
+// Creation date: June 5, 2021
+// Last edited: June 5, 2021
+
 import java.util.LinkedList;
 import java.util.Vector;
 
