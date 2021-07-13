@@ -1,6 +1,9 @@
-/* Authors: Emily Mahoney, Alex Miera */
-/* Creation date: July 11, 2021 */
-/* Last edited: July 11, 2021 */
+package src.triage;
+
+/**
+ * @author Emily Mahoney, Alex Miera
+ * @version %I% %G%
+*/
 
 import java.util.LinkedList;
 import java.util.Vector;
@@ -35,50 +38,19 @@ public class TriagedPatient {
     }
 
     public static void main (String[] args) {
-        /* Defines variables that make up retrivable welfare at runtime */
-        extractionTime = getExtractionTime();
-
-        /* Defines a triaged patient and adds factors that will make up 
-           retrievable welfare */
-        factors = new LinkedList<>();
-        TriagedPatient patient = new TriagedPatient(factors);
-        factors.add(0, patient.getExtractionTime());
-        factors.add(1, patient.getBurnPercent());
-        factors.add(2, patient.getRespirationRate());
-        factors.add(3, patient.getTidalVolume());
-        factors.add(4, patient.getPulse());
-        factors.add(5, patient.getSystolicPressure());
-        factors.add(6, patient.getDiastolicPressure());
-        factors.add(7, patient.getTemperature());
-        factors.add(8, patient.getBloodOxygen());
-
-        /* Defines a weight for each factor */
-        Vector<Double> weights = new Vector<>();
-        weights.add(0.4);
-        weights.add(0.5);
-        weights.add(0.15);
-        weights.add(0.2);
-        weights.add(0.3);
-        weights.add(0.2);
-        weights.add(0.1);
-        weights.add(0.05);
-        weights.add(0.35);
-
-        /* Tests weighted sum caclulator */
-        double retrievableWelfare = 
-            calculateRetrievableWelfare(weights, patient);
-        System.out.println("The patient triage weight for the given weight values is: " + retrievableWelfare);
+        
     }
 
-    /* Function that calculates the patients likelyhood of survival, i.e. 
-       retrievable welfare
+    /** Function that calculates the patients likelyhood of survival, i.e. 
+     *  retrievable welfare
      * 
-     * Note: number of factors is specified at runtime
+     * @note number of factors is specified at runtime
      * 
-     * Input: weights, triaged patient
-     * Output: triage weight
-               low triage weight = green to yellow tag
-               hight triage weight = red to black tag
+     * @param weights
+     * @param triagedPatient
+     * @return weightedSum
+     * @note low triage weight = green to yellow tag
+     *       high triage weight = red to black tag
     */
     public static double calculateRetrievableWelfare(Vector<Double> weights, TriagedPatient triagedPatient){
         double weightedSum = 0;
@@ -91,13 +63,14 @@ public class TriagedPatient {
         return weightedSum;
     }
 
-    /* Function that gets the time it takes to transfer the patient from the
-     * ground to the field hospital starting at the time a distress signal
-     * was sent to EMS (t_r) and ending at the time of arrival at a field 
-     * hospital (s_rh)
+    /** Function that gets the time it takes to transfer the patient from the
+     *  ground to the field hospital starting at the time a distress signal
+     *  was sent to EMS (t_r) and ending at the time of arrival at a field 
+     *  hospital (s_rh)
      * 
-     * Input: void
-     * Output: extraction time in min
+     * @param void
+     * @return extractionTime
+     * @note extractionTime is in min
     */
     public static double getExtractionTime() {
         return 70;
