@@ -12,14 +12,17 @@ Description : weightedSumCalculator and top3FieldHospitalsCalculator in Java
 
 public class FieldHospital {
     //list of field hospitals to rank
-    public static LinkedList<String> fieldHospitals;
+    public static LinkedList<FieldHospital> fieldHospitals;
     //name of field hospital
     private String fHName;
     //location/coordinates of field hospital
     private Pinpoint fHLocation;
+    //location/coordinates of injured soldier
+    private Pinpoint poi;
+
 
     //variable set of factors to judge field hospitals on
-    public static LinkedList<Double> factors;
+    private LinkedList<Double> factors;
     //how dangerous it is to get from poi to given field hospital
     private double danger;
     //how unavailable the given field hospital is
@@ -38,87 +41,25 @@ public class FieldHospital {
     - a name
     - factors like danger, unavailability, and routeDistance
      */
-    public FieldHospital(LinkedList<Double> factors, Pinpoint fHLocation, Pinpoint poi) {
+    public FieldHospital() {
         this.fHName = fHName;
         this.factors = factors;
         this.fHLocation = fHLocation;
-        this.danger = getDanger();
-        this.unavailability = getUnavailability();
-        this.routeDistance = getRouteDistance(fHLocation, poi);
+        this.danger = danger;
+        this.unavailability = unavailability;
+        this.poi = poi;
+        this.routeDistance = routeDistance;
     }
 
     public static void main(String[] args) {
-        //WEIGHTED SUM
-        //setting my poi to be at the origin
-        Pinpoint poi = new Pinpoint(0,0);
-        //making a field hospital with factors and a location
-        Pinpoint locationFH1 = new Pinpoint(-3,-5);
-        LinkedList<Double> factors1 = new LinkedList<>();
-        FieldHospital fh1 = new FieldHospital(factors1, locationFH1, poi);
-
-        //adding my 3 factors to a list of factors
-        factors1.add(0, fh1.getDanger());
-        factors1.add(1, fh1.getUnavailability());
-        factors1.add(2, fh1.getRouteDistance(locationFH1, poi));
-
-        //making a vector of 3 weights for the 3 factors
-        Vector<Double> myWeights = new Vector<>();
-        myWeights.add(0.25);
-        myWeights.add(0.50);
-        myWeights.add(0.75);
-
-        //testing out the method that calculates the weighted sum of the factors for a given field hospital and weights
-        double fH1WeightedDesirablity = weightedSumCalculator(myWeights, fh1);
-        System.out.println("The route score for the given weight values is: " + fH1WeightedDesirablity);
-
-
-        //TOP 3 FIELD HOSPITALS
-        //making 4 samples of field hospitals
-        //Field Hospital A
-        LinkedList<FieldHospital> myFieldHospitals = new LinkedList<>();
-        Pinpoint locationA = new Pinpoint(0,9);
-        LinkedList<Double> factorsA = new LinkedList<>();
-        FieldHospital fhA = new FieldHospital(factorsA, locationA, poi); //TODO is this getting the wrong location for factors? (see line 33)
-        fhA.setFHName("The A FH");
-        factorsA.add(0, fhA.getDanger());
-        factorsA.add(1, fhA.getUnavailability());
-        factorsA.add(2, fhA.getRouteDistance(locationA, poi));
-
-        //Field Hospital B
-        LinkedList<Double> factorsB = new LinkedList<>();
-        Pinpoint locationB = new Pinpoint(5,11);
-        FieldHospital fhB = new FieldHospital(factorsB, locationB, poi);
-        fhB.setFHName("The B FH");
-        factorsB.add(0, fhB.getDanger());
-        factorsB.add(1, fhB.getUnavailability());
-        factorsB.add(2, fhB.getRouteDistance(locationB, poi));
-
-        //Field Hospital C
-        LinkedList<Double> factorsC = new LinkedList<>();
-        Pinpoint locationC = new Pinpoint(3,6);
-        FieldHospital fhC = new FieldHospital(factorsC, locationC, poi);
-        fhC.setFHName("The C FH");
-        factorsC.add(0, fhC.getDanger());
-        factorsC.add(1, fhC.getUnavailability());
-        factorsC.add(2, fhC.getRouteDistance(locationC, poi));
-
-        //Field Hospital D
-        LinkedList<Double> factorsD = new LinkedList<>();
-        Pinpoint locationD = new Pinpoint(7,0);
-        FieldHospital fhD = new FieldHospital(factorsD, locationD, poi);
-        fhD.setFHName("The D FH");
-        factorsD.add(0, fhD.getDanger());
-        factorsD.add(1, fhD.getUnavailability());
-        factorsD.add(2, fhD.getRouteDistance(locationD, poi));
-
-        //adding the 4 sample field hospitals to a list
-        myFieldHospitals.add(fhA);
-        myFieldHospitals.add(fhB);
-        myFieldHospitals.add(fhC);
-        myFieldHospitals.add(fhD);
-
-        //testing out the method that ranks my list of field hospitals according to the given poi
-        top3FieldHospitalsCalculator(myFieldHospitals, poi);
+        AllMyTests at = new AllMyTests();
+        if(at.tests()) {
+            System.out.println("The tests are passed we are going to call production");
+            Production pd = new Production();
+            pd.prod(args);
+        } else {
+            System.out.println("Some tests did not pass. Better luck next time");
+        }
 
     }
 
@@ -127,7 +68,7 @@ public class FieldHospital {
     Input: vector of weights, field hospital
     Output: weightedSum
      */
-    public static double weightedSumCalculator(Vector<Double> weights, FieldHospital myFH) { //TODO test this next, see tests that are failing and check that the route distance is right
+    public static double weightedSumCalculator(Vector<Double> weights, LinkedList<Double> myFactors, FieldHospital myFH) { //TODO test this next, see tests that are failing and check that the route distance is right
         double weightedSum = 0;
         //loop through the weights
         for (int i = 0; i < weights.size(); i++) {
@@ -135,9 +76,10 @@ public class FieldHospital {
             if (weights.get(i) != 0.0) {
                 /* multiply the value of the weight by its coordinating factor (corresponding factors and weights should
                 have the same index i) and make that the value of weighted sum */
-                weightedSum += weights.get(i) * myFH.factors.get(i); //TODO factors need to figure out how to make
-                                                                        // it get the right factor for locations
-                                                                        // a, b, c, d
+                //TODO: PROBLEM factors gets only the factors of fhB instead of fhA
+                weightedSum += weights.get(i) * myFactors.get(i); //TODO factors need to figure out how to make
+                // it get the right factor for locations
+                // a, b, c, d
             }
         }
         return weightedSum;
@@ -149,7 +91,7 @@ public class FieldHospital {
     Input: list of field hospitals, poi
     Output: list of best 3 field hospitals
     */
-    public static ArrayList<String> top3FieldHospitalsCalculator(LinkedList<FieldHospital> fieldHospitals, Pinpoint poi) {
+    public static ArrayList<String> top3FieldHospitalsCalculator(LinkedList<FieldHospital> fieldHospitals, LinkedList<Double> factors) {
         Vector<Double> myWeights = new Vector<>();
         myWeights.add(0.25);
         myWeights.add(0.50);
@@ -158,11 +100,17 @@ public class FieldHospital {
         ArrayList<String> top3FH = new ArrayList<>();
         double first, second, third;
 
+
+        //TODO: PROBLEM for loop is only getting the weighted sum of fhB but assigning it to both A and B
+        //only gets factors of fhB
         /* loop through list of field hospitals to put them into a hashmap with the field hospital names as the keys
         and the weighted sums as the values */
         for (FieldHospital fh : fieldHospitals) {
+            LinkedList<Double> myFactors = new LinkedList<>();
+            fh.getFactors1FH(fh);
+            myFactors = fh.getFactors1FH(fh);
             //get weighted sum for each field hospital
-            double thisWeightedSum = weightedSumCalculator(myWeights, fh);
+            double thisWeightedSum = weightedSumCalculator(myWeights, myFactors, fh);
             //add each fh with its weighted sum to a hashmap
             allFHWeightedSums.put(fh, thisWeightedSum);
         }
@@ -208,7 +156,7 @@ public class FieldHospital {
 
         //print out the weighted sums of the field hospitals in ranked order
         //there are only two field hospitals provided
-        if (third == Integer.MAX_VALUE) {
+        if (third == Integer.MAX_VALUE && second != Integer.MAX_VALUE) {
             System.out.println("There is no third smallest element");
             System.out.println("The smallest element is " + first + " and second Smallest" + " element is " + second);
             //there is only one field hospital provided
@@ -229,19 +177,19 @@ public class FieldHospital {
     //FACTOR METHODS
     //method to calculate the danger level of the route from a poi to a given field hospital
     //dummy method currently
-    public double getDanger() {
-        return this.danger = 0.8;
+    public static double danger() {
+        return 0.8;
     }
 
     //method to calculate the unavailability level of the route from a poi to a given field hospital
     //dummy method currently
-    public double getUnavailability() {
-        return this.unavailability = 0.8;
+    public static double unavailability() {
+        return 0.8;
     }
 
     //method to calculate the distance of the route from a poi to a given field hospital
     //this seems to work; test passes
-    public double getRouteDistance(Pinpoint fHLocation, Pinpoint poi) {
+    public static double routeDistance(Pinpoint fHLocation, Pinpoint poi) {
         return Pinpoint.eDistance(fHLocation, poi);
     }
 
@@ -265,6 +213,27 @@ public class FieldHospital {
     //setter for field hospital location/coordinates
     public void setfHLocation(Pinpoint fHLocation){
         this.fHLocation = fHLocation;
+    }
+
+    //getter for 1 field hospital's factors
+    public LinkedList<Double> getFactors1FH(FieldHospital fieldHospital){
+        return this.factors;
+    }
+
+    //setter for field hospital location/coordinates
+    public void setFactors(LinkedList<Double> factors){
+        this.factors = factors;
+    }
+
+    //TODO not sure about this
+    //only gets factors for fhB because for each loop updates myFactors to only equal the last fieldHospital's factors
+    //getter for multiple field hospitals' factors
+    public static LinkedList<Double> getFactorsFHList(LinkedList<FieldHospital> fieldHospitals){
+        LinkedList<Double> myFactors = new LinkedList<>();
+        for (FieldHospital fh: fieldHospitals) {
+            myFactors = fh.getFactors1FH(fh);
+        }
+        return myFactors;
     }
 
 
