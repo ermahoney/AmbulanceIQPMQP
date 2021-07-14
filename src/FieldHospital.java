@@ -76,8 +76,7 @@ public class FieldHospital {
             if (weights.get(i) != 0.0) {
                 /* multiply the value of the weight by its coordinating factor (corresponding factors and weights should
                 have the same index i) and make that the value of weighted sum */
-                //TODO: PROBLEM factors gets only the factors of fhB instead of fhA
-                weightedSum += weights.get(i) * myFactors.get(i); //TODO factors need to figure out how to make
+                weightedSum += weights.get(i) * myFactors.get(i);
                 // it get the right factor for locations
                 // a, b, c, d
             }
@@ -100,8 +99,6 @@ public class FieldHospital {
         ArrayList<String> top3FH = new ArrayList<>();
         double first, second, third;
 
-
-        //TODO: PROBLEM for loop is only getting the weighted sum of fhB but assigning it to both A and B
         //only gets factors of fhB
         /* loop through list of field hospitals to put them into a hashmap with the field hospital names as the keys
         and the weighted sums as the values */
@@ -225,7 +222,6 @@ public class FieldHospital {
         this.factors = factors;
     }
 
-    //TODO not sure about this
     //only gets factors for fhB because for each loop updates myFactors to only equal the last fieldHospital's factors
     //getter for multiple field hospitals' factors
     public static LinkedList<Double> getFactorsFHList(LinkedList<FieldHospital> fieldHospitals){

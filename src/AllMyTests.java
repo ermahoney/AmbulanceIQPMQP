@@ -3,30 +3,30 @@ import org.junit.jupiter.api.Test;
 public class AllMyTests {
     public Boolean tests(){
         Boolean fHW1 = test1();
-        //System.out.println(fHW1 + " red");
+        //System.out.println(fHW1);
         Boolean fHW2 = test2();
-        //System.out.println(fHW2 + " orange");
+        //System.out.println(fHW2);
         Boolean fHW3 = test3();
-        //System.out.println(fHW3 + " yellow");
+        //System.out.println(fHW3);
         Boolean fHW4 = test4();
-        //System.out.println(fHW4 + " green");
+        //System.out.println(fHW4);
         Boolean fHW5 = test5();
-        //System.out.println(fHW5 + " blue");
+        //System.out.println(fHW5);
         Boolean fHW6 = test6();
-        //System.out.println(fHW6 + " purple");
+        //System.out.println(fHW6);
         Boolean fHW7 = test7();
-        //System.out.println(fHW7 + " pink");
+        //System.out.println(fHW7);
         Boolean fHW8 = test8();
-        //System.out.println(fHW8 + " black");
+        //System.out.println(fHW8);
         Boolean fHW9 = test9();
-        //System.out.println(fHW9 + "brown");
+        //System.out.println(fHW9);
 
         Boolean fHT10 = test10();
-        //System.out.println(fHT10 + "this test");
+        //System.out.println(fHT10);
         Boolean fHT11 = test11();
-        //System.out.println(fHT11 + " BLUE");
+        //System.out.println(fHT11);
         Boolean fHT12 = test12();
-        //System.out.println(fHT12 + " hi");
+        //System.out.println(fHT12);
 
         Boolean fHD13 = test13();
         //System.out.println(fHD13);
