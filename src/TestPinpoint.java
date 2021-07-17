@@ -34,7 +34,7 @@ public class TestPinpoint {
         Pinpoint pinpoint1 = new Pinpoint(-3,-5);
         Pinpoint pinpoint2 = new Pinpoint(3,5);
         assertEquals(16.0, Pinpoint.mDistance(pinpoint1, pinpoint2));
-        return (15.0 <= Pinpoint.eDistance(pinpoint1, pinpoint2) && 17.0 >= Pinpoint.eDistance(pinpoint1, pinpoint2));
+        return (15.0 <= Pinpoint.mDistance(pinpoint1, pinpoint2) && 17.0 >= Pinpoint.mDistance(pinpoint1, pinpoint2));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class TestPinpoint {
         Pinpoint pinpoint1 = new Pinpoint(3,5);
         Pinpoint pinpoint2 = new Pinpoint(3,5);
         assertEquals(0.0, Pinpoint.mDistance(pinpoint1, pinpoint2));
-        return (-1.0 <= Pinpoint.eDistance(pinpoint1, pinpoint2) && 1.0 >= Pinpoint.eDistance(pinpoint1, pinpoint2));
+        return (-1.0 <= Pinpoint.mDistance(pinpoint1, pinpoint2) && 1.0 >= Pinpoint.mDistance(pinpoint1, pinpoint2));
     }
 
 }

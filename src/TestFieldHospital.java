@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -211,9 +212,10 @@ public class TestFieldHospital {
         myFieldHospitals.add(fhA);
         ArrayList<String> top3FH = new ArrayList<>();
         top3FH.add(fhA.getFHName());
-        //assertEquals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, factorsA), top3FH);
-        return (FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, factorsA) == top3FH);
+        Boolean isGood = top3FH.equals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, factorsA));
+        return isGood;
     }
+
 
     @Test
         //testing top3fh when given just two field hospitals
@@ -248,20 +250,22 @@ public class TestFieldHospital {
         top3FH.add(fhA.getFHName());
         top3FH.add(fhB.getFHName());
         //assertEquals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)), top3FH);
-
-        return (FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)) == top3FH);
+        Boolean isGood = top3FH.equals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)));
+        //return (FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)) == top3FH);
+        return isGood;
     }
 
 
+
     @Test
-    //first test, just want top3fh to fail, which it does. currently working on debugging
-    Boolean testTop3FHJustFails(){
+        //testing top3fh when given three field hospitals
+    Boolean testTop3FHThreeFH(){
 
         Pinpoint poi = new Pinpoint(0,0);
         LinkedList<FieldHospital> myFieldHospitals = new LinkedList<>();
         Pinpoint locationA = new Pinpoint(0,5);
         LinkedList<Double> factorsA = new LinkedList<>();
-        FieldHospital fhA = new FieldHospital(); //TODO is this getting the wrong location for factors? (see line 33)
+        FieldHospital fhA = new FieldHospital();
         fhA.setFHName("The A FH");
         factorsA.add(0, FieldHospital.danger());
         factorsA.add(1, FieldHospital.unavailability());
@@ -294,9 +298,148 @@ public class TestFieldHospital {
         top3FH.add(fhA.getFHName());
         top3FH.add(fhB.getFHName());
         top3FH.add(fhC.getFHName());
-        //assertFalse(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)).equals(top3FH));
-        return (FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)) == top3FH);
+        Boolean isGood = top3FH.equals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)));
+        return isGood;
     }
+
+    @Test
+    //testing top3fh when given three field hospitals where just first and second have same location
+    Boolean testTop3FHThreeFHFirstSecondSameSpot(){
+
+        Pinpoint poi = new Pinpoint(0,0);
+        LinkedList<FieldHospital> myFieldHospitals = new LinkedList<>();
+        Pinpoint locationA = new Pinpoint(5,5);
+        LinkedList<Double> factorsA = new LinkedList<>();
+        FieldHospital fhA = new FieldHospital();
+        fhA.setFHName("The A FH");
+        factorsA.add(0, FieldHospital.danger());
+        factorsA.add(1, FieldHospital.unavailability());
+        factorsA.add(2, FieldHospital.routeDistance(locationA, poi));
+        fhA.setFactors(factorsA);
+
+        LinkedList<Double> factorsB = new LinkedList<>();
+        Pinpoint locationB = new Pinpoint(5,5);
+        FieldHospital fhB = new FieldHospital();
+        fhB.setFHName("The B FH");
+        factorsB.add(0, FieldHospital.danger());
+        factorsB.add(1, FieldHospital.unavailability());
+        factorsB.add(2, FieldHospital.routeDistance(locationB, poi));
+        fhB.setFactors(factorsB);
+
+        LinkedList<Double> factorsC = new LinkedList<>();
+        Pinpoint locationC = new Pinpoint(10,10);
+        FieldHospital fhC = new FieldHospital();
+        fhC.setFHName("The C FH");
+        factorsC.add(0, FieldHospital.danger());
+        factorsC.add(1, FieldHospital.unavailability());
+        factorsC.add(2, FieldHospital.routeDistance(locationC, poi));
+        fhC.setFactors(factorsC);
+
+        myFieldHospitals.add(fhA);
+        myFieldHospitals.add(fhB);
+        myFieldHospitals.add(fhC);
+
+        ArrayList<String> top3FH = new ArrayList<>();
+        top3FH.add(fhA.getFHName());
+        top3FH.add(fhB.getFHName());
+        top3FH.add(fhC.getFHName());
+
+        Boolean isGood = top3FH.equals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)));
+        return isGood;
+    }
+
+    @Test
+    //testing top3fh when given three field hospitals where just second and third have same location
+    Boolean testTop3FHThreeFHSecondThirdSameSpot(){
+
+        Pinpoint poi = new Pinpoint(0,0);
+        LinkedList<FieldHospital> myFieldHospitals = new LinkedList<>();
+        Pinpoint locationA = new Pinpoint(0,5);
+        LinkedList<Double> factorsA = new LinkedList<>();
+        FieldHospital fhA = new FieldHospital();
+        fhA.setFHName("The A FH");
+        factorsA.add(0, FieldHospital.danger());
+        factorsA.add(1, FieldHospital.unavailability());
+        factorsA.add(2, FieldHospital.routeDistance(locationA, poi));
+        fhA.setFactors(factorsA);
+
+        LinkedList<Double> factorsB = new LinkedList<>();
+        Pinpoint locationB = new Pinpoint(5,5);
+        FieldHospital fhB = new FieldHospital();
+        fhB.setFHName("The B FH");
+        factorsB.add(0, FieldHospital.danger());
+        factorsB.add(1, FieldHospital.unavailability());
+        factorsB.add(2, FieldHospital.routeDistance(locationB, poi));
+        fhB.setFactors(factorsB);
+
+        LinkedList<Double> factorsC = new LinkedList<>();
+        Pinpoint locationC = new Pinpoint(5,5);
+        FieldHospital fhC = new FieldHospital();
+        fhC.setFHName("The C FH");
+        factorsC.add(0, FieldHospital.danger());
+        factorsC.add(1, FieldHospital.unavailability());
+        factorsC.add(2, FieldHospital.routeDistance(locationC, poi));
+        fhC.setFactors(factorsC);
+
+        myFieldHospitals.add(fhA);
+        myFieldHospitals.add(fhB);
+        myFieldHospitals.add(fhC);
+
+        ArrayList<String> top3FH = new ArrayList<>();
+        top3FH.add(fhA.getFHName());
+        top3FH.add(fhB.getFHName());
+        top3FH.add(fhC.getFHName());
+
+        Boolean isGood = top3FH.equals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)));
+        return isGood;
+    }
+
+    @Test
+    //testing top3fh when given three field hospitals where first, second, and third have same location
+    Boolean testTop3FHThreeFHAllSameSpot(){
+
+        Pinpoint poi = new Pinpoint(0,0);
+        LinkedList<FieldHospital> myFieldHospitals = new LinkedList<>();
+        Pinpoint locationA = new Pinpoint(0,5);
+        LinkedList<Double> factorsA = new LinkedList<>();
+        FieldHospital fhA = new FieldHospital();
+        fhA.setFHName("The A FH");
+        factorsA.add(0, FieldHospital.danger());
+        factorsA.add(1, FieldHospital.unavailability());
+        factorsA.add(2, FieldHospital.routeDistance(locationA, poi));
+        fhA.setFactors(factorsA);
+
+        LinkedList<Double> factorsB = new LinkedList<>();
+        Pinpoint locationB = new Pinpoint(0,5);
+        FieldHospital fhB = new FieldHospital();
+        fhB.setFHName("The B FH");
+        factorsB.add(0, FieldHospital.danger());
+        factorsB.add(1, FieldHospital.unavailability());
+        factorsB.add(2, FieldHospital.routeDistance(locationB, poi));
+        fhB.setFactors(factorsB);
+
+        LinkedList<Double> factorsC = new LinkedList<>();
+        Pinpoint locationC = new Pinpoint(0,5);
+        FieldHospital fhC = new FieldHospital();
+        fhC.setFHName("The C FH");
+        factorsC.add(0, FieldHospital.danger());
+        factorsC.add(1, FieldHospital.unavailability());
+        factorsC.add(2, FieldHospital.routeDistance(locationC, poi));
+        fhC.setFactors(factorsC);
+
+        myFieldHospitals.add(fhA);
+        myFieldHospitals.add(fhB);
+        myFieldHospitals.add(fhC);
+
+        ArrayList<String> top3FH = new ArrayList<>();
+        top3FH.add(fhA.getFHName());
+        top3FH.add(fhB.getFHName());
+        top3FH.add(fhC.getFHName());
+
+        Boolean isGood = top3FH.equals(FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals)));
+        return isGood;
+    }
+
 
 
     //Testing getDanger()

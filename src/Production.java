@@ -33,11 +33,12 @@ public class Production {
         LinkedList<FieldHospital> myFieldHospitals = new LinkedList<>();
         Pinpoint locationA = new Pinpoint(0,5);
         LinkedList<Double> factorsA = new LinkedList<>();
-        FieldHospital fhA = new FieldHospital(); //TODO is this getting the wrong location for factors?
+        FieldHospital fhA = new FieldHospital();
         fhA.setFHName("The A FH");
         factorsA.add(0, fhA.danger());
         factorsA.add(1, fhA.unavailability());
         factorsA.add(2, fhA.routeDistance(locationA, poi));
+        fhA.setFactors(factorsA);
 
 
         //Field Hospital B
@@ -48,33 +49,24 @@ public class Production {
         factorsB.add(0, fhB.danger());
         factorsB.add(1, fhB.unavailability());
         factorsB.add(2, fhB.routeDistance(locationB, poi));
+        fhB.setFactors(factorsB);
 
-        /*
+
         //Field Hospital C
         LinkedList<Double> factorsC = new LinkedList<>();
-        Pinpoint locationC = new Pinpoint(3,6);
-        FieldHospital fhC = new FieldHospital(factorsC, locationC, poi);
+        Pinpoint locationC = new Pinpoint(10,10);
+        FieldHospital fhC = new FieldHospital();
         fhC.setFHName("The C FH");
-        factorsC.add(0, fhC.getDanger());
-        factorsC.add(1, fhC.getUnavailability());
-        factorsC.add(2, fhC.getRouteDistance(locationC, poi));
+        factorsC.add(0, fhC.danger());
+        factorsC.add(1, fhC.unavailability());
+        factorsC.add(2, fhC.routeDistance(locationC, poi));
+        fhC.setFactors(factorsC);
 
-        //Field Hospital D
-        LinkedList<Double> factorsD = new LinkedList<>();
-        Pinpoint locationD = new Pinpoint(7,0);
-        FieldHospital fhD = new FieldHospital(factorsD, locationD, poi);
-        fhD.setFHName("The D FH");
-        factorsD.add(0, fhD.getDanger());
-        factorsD.add(1, fhD.getUnavailability());
-        factorsD.add(2, fhD.getRouteDistance(locationD, poi));
 
-         */
-
-        //adding the 4 sample field hospitals to a list
+        //adding the 3 sample field hospitals to a list
         myFieldHospitals.add(fhA);
         myFieldHospitals.add(fhB);
-        //myFieldHospitals.add(fhC);
-        //myFieldHospitals.add(fhD);
+        myFieldHospitals.add(fhC);
 
         //testing out the method that ranks my list of field hospitals according to the given poi
         FieldHospital.top3FieldHospitalsCalculator(myFieldHospitals, FieldHospital.getFactorsFHList(myFieldHospitals));

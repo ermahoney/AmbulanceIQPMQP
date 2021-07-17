@@ -20,7 +20,6 @@ public class FieldHospital {
     //location/coordinates of injured soldier
     private Pinpoint poi;
 
-
     //variable set of factors to judge field hospitals on
     private LinkedList<Double> factors;
     //how dangerous it is to get from poi to given field hospital
@@ -30,15 +29,13 @@ public class FieldHospital {
     //how far it is to get from poi to given field hospital
     private double routeDistance;
 
-
     /*
     Field Hospital Object
     Description: an object to act as a field hospital in the area of a poi on a map
     Properties:
+    - a name
     - a list of factors to rank the field hospital by
     - the location/coordinates of the field hospital
-    - the location/coordinates of the given poi
-    - a name
     - factors like danger, unavailability, and routeDistance
      */
     public FieldHospital() {
@@ -47,18 +44,17 @@ public class FieldHospital {
         this.fHLocation = fHLocation;
         this.danger = danger;
         this.unavailability = unavailability;
-        this.poi = poi;
         this.routeDistance = routeDistance;
     }
 
     public static void main(String[] args) {
         AllMyTests at = new AllMyTests();
-        if(at.tests()) {
-            System.out.println("The tests are passed we are going to call production");
+        if (at.tests()) {
+            System.out.println("The tests are passed we are going to call production!");
             Production pd = new Production();
             pd.prod(args);
         } else {
-            System.out.println("Some tests did not pass. Better luck next time");
+            System.out.println("Some tests did not pass. Better luck next time!");
         }
 
     }
@@ -68,17 +64,12 @@ public class FieldHospital {
     Input: vector of weights, field hospital
     Output: weightedSum
      */
-    public static double weightedSumCalculator(Vector<Double> weights, LinkedList<Double> myFactors, FieldHospital myFH) { //TODO test this next, see tests that are failing and check that the route distance is right
+    public static double weightedSumCalculator(Vector<Double> weights, LinkedList<Double> myFactors, FieldHospital myFH) {
         double weightedSum = 0;
-        //loop through the weights
         for (int i = 0; i < weights.size(); i++) {
             //check that value of weight is not zero, if zero then skip that factor, else get value of weight
             if (weights.get(i) != 0.0) {
-                /* multiply the value of the weight by its coordinating factor (corresponding factors and weights should
-                have the same index i) and make that the value of weighted sum */
                 weightedSum += weights.get(i) * myFactors.get(i);
-                // it get the right factor for locations
-                // a, b, c, d
             }
         }
         return weightedSum;
@@ -95,20 +86,16 @@ public class FieldHospital {
         myWeights.add(0.25);
         myWeights.add(0.50);
         myWeights.add(0.75);
-        HashMap<FieldHospital, Double> allFHWeightedSums = new HashMap<FieldHospital, Double>();
+        LinkedHashMap<FieldHospital, Double> allFHWeightedSums = new LinkedHashMap<FieldHospital, Double>();
         ArrayList<String> top3FH = new ArrayList<>();
         double first, second, third;
 
-        //only gets factors of fhB
         /* loop through list of field hospitals to put them into a hashmap with the field hospital names as the keys
         and the weighted sums as the values */
         for (FieldHospital fh : fieldHospitals) {
             LinkedList<Double> myFactors = new LinkedList<>();
-            fh.getFactors1FH(fh);
             myFactors = fh.getFactors1FH(fh);
-            //get weighted sum for each field hospital
             double thisWeightedSum = weightedSumCalculator(myWeights, myFactors, fh);
-            //add each fh with its weighted sum to a hashmap
             allFHWeightedSums.put(fh, thisWeightedSum);
         }
 
@@ -117,7 +104,6 @@ public class FieldHospital {
             System.out.println("Invalid input");
         }
 
-        //setting the first, second, and third values to be a high value
         first = second = third = Integer.MAX_VALUE;
         //loop through the values of the hashmap and save the 3 fh's with the least weighted sums to a linked list
         for (Map.Entry<FieldHospital, Double> entry : allFHWeightedSums.entrySet()) {
@@ -126,45 +112,46 @@ public class FieldHospital {
             if (entry.getValue() < first) {
 
                 third = second = first;
-                //set value of first to the weighted sum of this best entry (least weighted sum)
                 first = entry.getValue();
-                //add the name of the best field hospital to a list of the top 3 field hospitals
                 top3FH.add(entry.getKey().getFHName());
 
                 /* If allFHWeightedSums.get(i) is in between first and second
                then update second  */
-            } else if (entry.getValue() < second && entry.getValue() != first) {
-                //set value of second to the weighted sum of second best this entry (second least weighted sum)
+            } else if (entry.getValue() < second) {
                 second = entry.getValue();
-                //add the name of the second best field hospital to a list of the top 3 field hospitals
                 top3FH.add(entry.getKey().getFHName());
 
                 /* If allFHWeightedSums.get(i) is in between second and third
                then update third  */
             } else {
-                if (entry.getValue() < third && entry.getValue() != second && entry.getValue() != first) {
-                    //set value of third to the weighted sum of third best this entry (third least weighted sum)
+                if (entry.getValue() < third) {
                     third = entry.getValue();
-                    //add the name of the third best field hospital to a list of the top 3 field hospitals
                     top3FH.add(entry.getKey().getFHName());
                 }
             }
         }
 
         //print out the weighted sums of the field hospitals in ranked order
-        //there are only two field hospitals provided
-        if (third == Integer.MAX_VALUE && second != Integer.MAX_VALUE) {
+        if (first == second && second == third && first != Integer.MAX_VALUE) { //case for first, second, and third tied
+            System.out.println("There is a tie for first second, and third smallest element");
+            System.out.println("First, second, and third are tied for smallest element at: " + first);
+        } else if (first == second && first != Integer.MAX_VALUE && third == Integer.MAX_VALUE) { //case for first and second tied
+            System.out.println("There is a tie for first and second smallest element");
+            System.out.println("First and second are tied for smallest element at: " + first);
+        } else if (first == second && first != Integer.MAX_VALUE && third != Integer.MAX_VALUE) { //case for first and second tied
+            System.out.println("There is a tie for first and second smallest element, but not third");
+            System.out.println("First and second are tied for smallest element at: " + first + " and the third smallest element is " + third);
+        } else if (second == third && second != Integer.MAX_VALUE && first != Integer.MAX_VALUE) { //case for second and third tied
+            System.out.println("There is a tie for second and third smallest element, but not first");
+            System.out.println("The smallest element is " + first + " and second and third are tied for smallest element at: " + second);
+        } else if (third == Integer.MAX_VALUE && second != Integer.MAX_VALUE) { //case for 2 field hospitals provided
             System.out.println("There is no third smallest element");
-            System.out.println("The smallest element is " + first + " and second Smallest" + " element is " + second);
-            //there is only one field hospital provided
-        } else if (second == Integer.MAX_VALUE && third == Integer.MAX_VALUE) {
+            System.out.println("The smallest element is " + first + " and second smallest" + " element is " + second);
+        } else if (second == Integer.MAX_VALUE && third == Integer.MAX_VALUE) { //case for 1 field hospital provided
             System.out.println("There is no second or third smallest element");
             System.out.println("The smallest element is " + first);
-            //there are at least 3 field hospitals provided
-        } else {
-            System.out.println("The smallest element is " + first + " and second Smallest" +
-                    " element is " + second + " and third Smallest" +
-                    " element is " + third);
+        } else { //case for 3 field hospitals provided
+            System.out.println("The smallest element is " + first + " and second smallest" + " element is " + second + " and third smallest" + " element is " + third);
         }
 
         //return the names of the best three field hospitals in order
@@ -185,52 +172,47 @@ public class FieldHospital {
     }
 
     //method to calculate the distance of the route from a poi to a given field hospital
-    //this seems to work; test passes
     public static double routeDistance(Pinpoint fHLocation, Pinpoint poi) {
         return Pinpoint.eDistance(fHLocation, poi);
     }
 
-
     //GETTER AND SETTER METHODS
     //getter for field hospital name
-    public String getFHName(){
+    public String getFHName() {
         return this.fHName;
     }
 
     //setter for field hospital name
-    public void setFHName(String fHName){
+    public void setFHName(String fHName) {
         this.fHName = fHName;
     }
 
     //getter for field hospital location/coordinates
-    public Pinpoint getFHLocation(){
+    public Pinpoint getFHLocation() {
         return this.fHLocation;
     }
 
     //setter for field hospital location/coordinates
-    public void setfHLocation(Pinpoint fHLocation){
+    public void setfHLocation(Pinpoint fHLocation) {
         this.fHLocation = fHLocation;
     }
 
     //getter for 1 field hospital's factors
-    public LinkedList<Double> getFactors1FH(FieldHospital fieldHospital){
+    public LinkedList<Double> getFactors1FH(FieldHospital fieldHospital) {
         return this.factors;
     }
 
     //setter for field hospital location/coordinates
-    public void setFactors(LinkedList<Double> factors){
+    public void setFactors(LinkedList<Double> factors) {
         this.factors = factors;
     }
 
-    //only gets factors for fhB because for each loop updates myFactors to only equal the last fieldHospital's factors
     //getter for multiple field hospitals' factors
-    public static LinkedList<Double> getFactorsFHList(LinkedList<FieldHospital> fieldHospitals){
+    public static LinkedList<Double> getFactorsFHList(LinkedList<FieldHospital> fieldHospitals) {
         LinkedList<Double> myFactors = new LinkedList<>();
-        for (FieldHospital fh: fieldHospitals) {
+        for (FieldHospital fh : fieldHospitals) {
             myFactors = fh.getFactors1FH(fh);
         }
         return myFactors;
     }
-
-
 }
