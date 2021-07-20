@@ -9,4 +9,4 @@ Java but moving into C/C++
 # Links for Sources
 
 # Glossary (Alphabetical)
-
+## - Point of injury – location where the patient was injured
