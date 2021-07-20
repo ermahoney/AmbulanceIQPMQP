@@ -18,17 +18,24 @@ public class ImageTest implements ActionListener{
 	
 	private int count = 0;
 //	private int I;
-	private JLabel label;
-	private JFrame frame;
-	private JPanel panel;
+	public JLabel label;
+	public JLabel labelBody;
+	public JFrame frame;
+	public JPanel panel;
+	public JPanel bodyPanel;
+	public int xx = 0;
+	public int yy = 0;
 	
 	public ImageTest() {
 		
 		frame = new JFrame(); 
 		ImageIcon icon = new ImageIcon("C:\\Users\\bsnap\\OneDrive\\Documents\\Summer2021\\IQP\\AfghanistanMap.jpg");
+//		ImageIcon hospital = new ImageIcon("C:\\Users\\bsnap\\OneDrive\\Documents\\Summer2021\\IQP\\PinFieldHospital1.0.jpg");
+		ImageIcon soldier = new ImageIcon("C:\\Users\\bsnap\\OneDrive\\Documents\\Summer2021\\IQP\\PinIconRed1.0.jpg");
+		
 //		JButton button = new JButton("Click me");
 //		button.addActionListener(this);
-		
+		labelBody = new JLabel(soldier);
 		label = new JLabel(icon);
 		
 		panel = new JPanel();
@@ -39,6 +46,13 @@ public class ImageTest implements ActionListener{
 //		panel.addMouseListener(new ImageTest());
 //		panel.addMouseListener(1);
 		panel.add(label);
+		
+		
+		bodyPanel = new JPanel();
+		bodyPanel.setLayout(null);
+		bodyPanel.setLocation(xx, yy);
+		bodyPanel.add(labelBody);
+		
 		
 		final JTextField text = new JTextField();;
 	    frame.add(text,BorderLayout.SOUTH);
@@ -53,8 +67,12 @@ public class ImageTest implements ActionListener{
 	          int x = me.getX();
 	          int y = me.getY();
 	          text.setText("X:" + x + " Y:" + y); 
+	          //soldier.setLocation(x, y);
+	          xx = x;
+	          yy = y;
 	        }
 	    });
+		//frame.add(bodyPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Interactive Afghanistan Map");
 		frame.pack();
@@ -72,6 +90,7 @@ public class ImageTest implements ActionListener{
 	public void mouseClicked(MouseEvent me) {
 	    int screenX = me.getXOnScreen();
 	    int screenY = me.getYOnScreen();
+	    
 	    System.out.println("screen(X,Y) = " + screenX + "," + screenY);
 	  }
 }
