@@ -12,12 +12,13 @@
 #define FALSE (0)
 
 
+
 /** Function to create an empty linked list
  *
  * @return pointer to linked list structure or NULL on error
  */
-LLIST *create ( void) {
-  LLIST *pll = (LLIST *) calloc (1, sizeof(LLIST));
+LinkedList::LLIST* LinkedList::create (void) {
+  LLIST *pll = (LLIST*) malloc(sizeof(LLIST));
   if (pll != NULL) {
     pll->head = NULL;
     pll->tail = NULL;
@@ -26,13 +27,12 @@ LLIST *create ( void) {
 }
 
 
-
 /** Function to destroy a linked list. Linked list must be empty
  *
  * @param pll is a pointer to the linked list
  * @return zero on success, nonzero on failure
  */
-int destroy (LLIST *pll) {
+int destroy (LinkedList::LLIST* pll) {
   if ((pll->head != NULL) || (pll->tail != NULL)) {
     // If linked list is not empty, something is wrong
     return -1;
@@ -50,7 +50,7 @@ int destroy (LLIST *pll) {
  * @param pll is a pointer to the linked list
  * @return first node in the llist or null if empty
  */
-LLNODE *get_first_node (LLIST *pll) {
+LinkedList::LLNODE* LinkedList::get_first_node (LinkedList::LLIST *pll) {
   return pll->head;
 }
 
@@ -61,7 +61,7 @@ LLNODE *get_first_node (LLIST *pll) {
  * @param pll is a pointer to the linked list
  * @return first node in the llist or null if empty
  */
-LLNODE *get_last_node (LLIST *pll) {
+LinkedList::LLNODE* LinkedList::get_last_node (LinkedList::LLIST* pll) {
   return pll->tail;
 }
 
@@ -72,7 +72,7 @@ LLNODE *get_last_node (LLIST *pll) {
  * @param pnode is a pointer to the current node during iteration
  * @return the next node (node following pnode) or NULL
  */
-LLNODE *get_next_node (LLNODE *pnode) {
+LinkedList::LLNODE* LinkedList::get_next_node (LinkedList::LLNODE* pnode) {
   return pnode->next;
 }
 
@@ -83,7 +83,7 @@ LLNODE *get_next_node (LLNODE *pnode) {
  * @param pnode is a pointer to the current node during iteration
  * @return the prev node (node preceding pnode) or NULL
  */
-LLNODE *get_prev_node (LLNODE *pnode) {
+LinkedList::LLNODE* LinkedList::get_prev_node (LinkedList::LLNODE* pnode) {
   return pnode->prev;
 }
 
@@ -92,20 +92,20 @@ LLNODE *get_prev_node (LLNODE *pnode) {
 /** Function to add node to head of list
  *
  * @param pll is a pointer to the linked list
- * @param pf is a pointer to the factor
+ * @param pf is a pointer to the data
  * @return zero for success or nonzero for failure
  */
-int addhead (LLIST *pll, double factor) {
-  LLNODE *pnode;    // pointer to the new node
+int LinkedList::addhead (LinkedList::LLIST* pll, double* data) {
+  LinkedList::LLNODE* pnode;    // pointer to the new node
 
-  pnode = (LLNODE *) calloc(1, sizeof(LLNODE));
+  pnode = (LinkedList::LLNODE*) calloc(1, sizeof(LinkedList::LLNODE));
   if (pnode == 0) {
     return -1;      // failed allocation, no change to llist
   }
 
   /* link the triaged patient data to the node just allocated
    */
-  pnode->factor = factor;
+  pnode->data = data;
 
   /* Link the new node to the head of the linked list
    */
@@ -133,20 +133,20 @@ int addhead (LLIST *pll, double factor) {
 /** Function to add node to tail of list
  *
  * @param pll is a pointer to the linked list
- * @param pf is a pointer to the factor
+ * @param pf is a pointer to the data
  * @return zero for success or nonzero for failure
  */
-int addtail (LLIST *pll, double factor) {
-  LLNODE *pnode;    // pointer to the new node
+int LinkedList::addtail (LinkedList::LLIST* pll, double* data) {
+  LinkedList::LLNODE *pnode;    // pointer to the new node
 
-  pnode = (LLNODE *) calloc(1, sizeof(LLNODE));
+  pnode = (LinkedList::LLNODE *) calloc(1, sizeof(LinkedList::LLNODE));
   if (pnode == 0) {
     return -1;      // failed allocation, no change to llist
   }
 
   /* link the triaged patient data to the node just allocated
    */
-  pnode->factor = factor;
+  pnode->data = data;
 
   /* Link the new node to the tail of the linked list
    */
@@ -184,8 +184,8 @@ int addtail (LLIST *pll, double factor) {
  * @param pnode is pointer to node to delete
  * @return zero for success, nonzero on error
  */
-int deletenode (LLIST *pll, LLNODE *pnode) {
-  LLNODE *pcur;     // current node as we iterate the list
+int LinkedList::deletenode (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode) {
+  LinkedList::LLNODE *pcur;     // current node as we iterate the list
 
   /* walk the list until we find the wanted node. Error if not we don't find it
    */
@@ -232,12 +232,12 @@ int deletenode (LLIST *pll, LLNODE *pnode) {
  *
  * @param pll is a pointer to the linked list
  * @param pnode is a pointer to the node to add before
- * @param pf is a pointer to the factor
+ * @param pf is a pointer to the data
  * @return zero if success or nonzero on error
  */
-int add_before (LLIST *pll, LLNODE *pnode, double factor) {
-  LLNODE *pnewnode = NULL;
-  pnewnode = (LLNODE *) calloc (1, sizeof(LLNODE));
+int LinkedList::add_before (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, double* data) {
+  LinkedList::LLNODE* pnewnode = NULL;
+  pnewnode = (LinkedList::LLNODE *) calloc (1, sizeof(LinkedList::LLNODE));
   if (pnewnode == NULL) {
     // failed to allocate memory for new node
     return -1;
@@ -245,7 +245,7 @@ int add_before (LLIST *pll, LLNODE *pnode, double factor) {
 
   /* link the triaged patient data to the node then link the node into the list
    */
-  pnewnode->factor = factor;
+  pnewnode->data = data;
 
   /* special processing if we are adding to empty list
    * verify parameters are sensible for this situation
@@ -286,12 +286,12 @@ int add_before (LLIST *pll, LLNODE *pnode, double factor) {
  *
  * @param pll is a pointer to the linked list
  * @param pnode is a pointer to the not to add after
- * @param pf is a pointer to the factor
+ * @param pf is a pointer to the data
  * @return zero if success or nonzero on error
  */
-int add_after (LLIST *pll, LLNODE *pnode, double factor) {
-  LLNODE *pnewnode = NULL;
-  pnewnode = (LLNODE *) calloc (1, sizeof(LLNODE));
+int LinkedList::add_after (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, double* data) {
+  LinkedList::LLNODE *pnewnode = NULL;
+  pnewnode = (LinkedList::LLNODE *) calloc (1, sizeof(LinkedList::LLNODE));
   if (pnewnode == NULL) {
     // failed to allocate memory for new node
     return -1;
@@ -299,7 +299,7 @@ int add_after (LLIST *pll, LLNODE *pnode, double factor) {
 
   /* link the triaged patient data to the node the link the node into the list
    */
-  pnewnode->factor = factor;
+  pnewnode->data = data;
 
   /* special processing if we are adding to empty list
    * verify parameters are sensible for this situation

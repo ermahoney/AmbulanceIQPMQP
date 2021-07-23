@@ -13,20 +13,22 @@
 
 
 int main(int argc, char *argv[]) {
-    TriagedPatient patient1;
-    TriagedPatient* ppatient1;
+    printf("1\n");
+    TriagedPatient* patient1 = new TriagedPatient();
+    LinkedList* llist = new LinkedList();
 
-    ppatient1->factors = create();
+    patient1->factors = llist->create();
+    printf("Extraction time: %f\n", *(patient1->extractionTime));
     
-    addtail(ppatient1->factors, ppatient1->getExtractionTime());
-    addtail(ppatient1->factors, ppatient1->getBurnPercent());
-    addtail(ppatient1->factors, ppatient1->getRespirationRate());
-    addtail(ppatient1->factors, ppatient1->getTidalVolume());
-    addtail(ppatient1->factors, ppatient1->getPulse());
-    addtail(ppatient1->factors, ppatient1->getSystolicPressure());
-    addtail(ppatient1->factors, ppatient1->getDiastolicPressure());
-    addtail(ppatient1->factors, ppatient1->getTemperature());
-    addtail(ppatient1->factors, ppatient1->getBloodOxygen());
+    llist->addtail(patient1->factors, patient1->extractionTime);
+    llist->addtail(patient1->factors, patient1->burnPercent);
+    llist->addtail(patient1->factors, patient1->respirationRate);
+    llist->addtail(patient1->factors, patient1->tidalVolume);
+    llist->addtail(patient1->factors, patient1->pulse);
+    llist->addtail(patient1->factors, patient1->systolicPressure);
+    llist->addtail(patient1->factors, patient1->diastolicPressure);
+    llist->addtail(patient1->factors, patient1->temperature);
+    llist->addtail(patient1->factors, patient1->bloodOxygen);
 
     std::vector<double> weights;
     weights.push_back(0.1);
@@ -39,8 +41,8 @@ int main(int argc, char *argv[]) {
     weights.push_back(0.8);
     weights.push_back(0.9);
 
-    double retrievableWelfare = calculateRetrievableWelfare(weights, ppatient1);
-    printf("Retrievable welfare: %f", retrievableWelfare);
+    double retrievableWelfare = calculateRetrievableWelfare(weights, llist, patient1);
+    printf("Retrievable welfare: %f\n", retrievableWelfare);
 }
 
 
@@ -56,14 +58,16 @@ int main(int argc, char *argv[]) {
  * @note low triage weight = green to yellow tag
  *       high triage weight = red to black tag
 */
-static double calculateRetrievableWelfare(std::vector<double> weights, struct TriagedPatient *triagedPatient){
+double calculateRetrievableWelfare(std::vector<double> weights, 
+                                   LinkedList* llist,
+                                   struct TriagedPatient *triagedPatient) {
     double weightedSum = 0;
-    LLNODE *pnode = get_first_node(triagedPatient->factors);
+    LinkedList::LLNODE *pnode = llist->get_first_node(triagedPatient->factors);
 
     for( int i = 0; i < weights.size(); i++ ){
         if( weights.at(i) != 0.0){
-            weightedSum += weights.at(i) * (pnode->factor);
-            pnode = get_next_node(pnode);
+            weightedSum += weights.at(i) * (*(pnode->data));
+            pnode = llist->get_next_node(pnode);
         }
     }
     return weightedSum;
@@ -93,7 +97,7 @@ double TriagedPatient::getRespirationRate() {
     return 20;
 }
 
-double  TriagedPatient::getTidalVolume() {
+double TriagedPatient::getTidalVolume() {
     return 8;
 }
 
