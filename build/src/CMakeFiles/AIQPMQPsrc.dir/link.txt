@@ -1,0 +1,2 @@
+/bin/ar qc libAIQPMQPsrc.a  CMakeFiles/AIQPMQPsrc.dir/linkedlist.cpp.o CMakeFiles/AIQPMQPsrc.dir/triagedPatient.cpp.o
+/bin/ranlib libAIQPMQPsrc.a

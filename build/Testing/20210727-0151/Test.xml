@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20210727-0151-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.16.3"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="ammiera-VirtualBox"
+	OSRelease="5.8.0-59-generic"
+	OSVersion="#66~20.04.1-Ubuntu SMP Thu Jun 17 11:14:10 UTC 2021"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="158"
+	ProcessorCacheSize="12288"
+	NumberOfLogicalCPU="1"
+	NumberOfPhysicalCPU="1"
+	TotalVirtualMemory="2047"
+	TotalPhysicalMemory="3935"
+	LogicalProcessorsPerPhysical="1"
+	ProcessorClockFrequency="2592"
+	>
+	<Testing>
+		<StartDateTime>Jul 27 00:02 EDT</StartDateTime>
+		<StartTestTime>1627358559</StartTestTime>
+		<TestList>
+			<Test>./test/AIQPMQPtest</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>AIQPMQPtest</Name>
+			<Path>./test</Path>
+			<FullName>./test/AIQPMQPtest</FullName>
+			<FullCommandLine>/home/ammiera/AmbulanceIQPMQP/build/test/AIQPMQPtest</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.0193851</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/ammiera/AmbulanceIQPMQP/build/test/AIQPMQPtest</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyVlE1Lw0AQhu/7K+aYHprYWgQPHgqKiKjphwiWIttkmizsR9ndtPXfO2lqaIrSZE4T5n3mnR12My20FjoDxYUOerC2RkGUG4URV0qg5dFYrQrJdYJPk/hlEke491FmTCbRo2ukziZRVmZfZbcwSdjiro4lTI9WN1BqXOU1OHyAK4THkC36dSzhUZoVl1Ud9VZYoxVq0qLvF5szcaOpt4JnmMbcCwLmVGALmL6/wiGWf9RDmgw/UGS5d2zIrklfxdvzRT0EV6Bc76KF+SVaGdTqtu216TS/6Tg9HdjnFfOJ1rRd0inT1motrPMdrc6YtlZcyuMeWjs1kdqow2WEYEQMeOO57LF2l94jt/3U7HTzTf37lsByHUJwe2JEB4vHs9nDfbmLIxhSsHlO8pI0a/CUH7qYwm8KDzvuqKbMFlNwgv4CIGiwfYKYukqcE5obmZb04Go4gtU3NQjZD8zwaKE=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Jul 27 00:02 EDT</EndDateTime>
+		<EndTestTime>1627358559</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

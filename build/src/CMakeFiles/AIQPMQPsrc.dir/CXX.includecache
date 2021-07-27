@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ammiera/AmbulanceIQPMQP/src/linkedlist.cpp
+stdlib.h
+-
+string.h
+-
+linkedlist.hpp
+/home/ammiera/AmbulanceIQPMQP/src/linkedlist.hpp
+
+/home/ammiera/AmbulanceIQPMQP/src/linkedlist.hpp
+
+/home/ammiera/AmbulanceIQPMQP/src/triagedPatient.cpp
+vector
+-
+iostream
+-
+stdio.h
+-
+linkedlist.hpp
+/home/ammiera/AmbulanceIQPMQP/src/linkedlist.hpp
+triagedPatient.hpp
+/home/ammiera/AmbulanceIQPMQP/src/triagedPatient.hpp
+
+/home/ammiera/AmbulanceIQPMQP/src/triagedPatient.hpp
+stdio.h
+-
+linkedlist.hpp
+/home/ammiera/AmbulanceIQPMQP/src/linkedlist.hpp
+vector
+-
+iostream
+-
+
