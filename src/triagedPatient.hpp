@@ -58,7 +58,6 @@ class TriagedPatient {
             *bloodOxygen = getBloodOxygen();
         }
 
-        
         double getExtractionTime();
         double getBurnPercent();
         double getRespirationRate();
@@ -69,12 +68,12 @@ class TriagedPatient {
         double getTemperature();
         double getBloodOxygen();
 
-        void createFactorsLL(LinkedList* llist, TriagedPatient* patient);
-        void deleteTriagedPatient(LinkedList* llist, TriagedPatient* patient);
+        int createFactors(LinkedList* llist, TriagedPatient* ppatient);
+        int deleteTriagedPatient(LinkedList* llist, TriagedPatient* ppatient);
 };
 
 double calculateRetrievableWelfare(std::vector<double> weights, 
                                    LinkedList* llist,
-                                   struct TriagedPatient *triagedPatient);
+                                   struct TriagedPatient *ppatient);
 
 #endif

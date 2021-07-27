@@ -5,11 +5,16 @@
 #include "../src/triagedPatient.hpp"
 
 TEST(triagedPatientTest, nineWeights) {
-    TriagedPatient* patient = new TriagedPatient();
+    /* creates and fills patient class */
+    TriagedPatient* ppatient = new TriagedPatient();
     LinkedList* llist = new LinkedList();
-
-    patient->createFactorsLL(llist, patient);
+    ppatient->createFactors(llist, ppatient);
     
+    /* creates a vector of weights 
+     *
+     * note that the position of the weight determines which factor the weight
+     * will effect
+     */
     std::vector<double> weights;
     weights.push_back(0.10);
     weights.push_back(0.20);
@@ -22,40 +27,64 @@ TEST(triagedPatientTest, nineWeights) {
     weights.push_back(0.90);
 
     EXPECT_PRED_FORMAT2(testing::DoubleLE, 356.08, 356.08);
-    patient->deleteTriagedPatient(llist, patient);
+
+    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
+    to patient class */
 }
 
 TEST(triagedPatientTest, oneWeight) {
-    TriagedPatient* patient = new TriagedPatient();
+    /* creates and fills patient class */
+    TriagedPatient* ppatient = new TriagedPatient();
     LinkedList* llist = new LinkedList();
 
-    patient->createFactorsLL(llist, patient);
-    
+    ppatient->createFactors(llist, ppatient);
+
+     /* creates a vector of weights 
+     *
+     * note that the position of the weight determines which factor the weight
+     * will effect
+     */   
     std::vector<double> weights;
     weights.push_back(0.10);
 
     EXPECT_PRED_FORMAT2(testing::DoubleLE, 70.00, 70.00);
-    patient->deleteTriagedPatient(llist, patient);
+
+    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
+    to patient class */
 }
 
 TEST(triagedPatientTest, noWeights) {
-    TriagedPatient* patient = new TriagedPatient();
+    /* creates and fills patient class */
+    TriagedPatient* ppatient = new TriagedPatient();
     LinkedList* llist = new LinkedList();
 
-    patient->createFactorsLL(llist, patient);
-    
+    ppatient->createFactors(llist, ppatient);
+
+    /* creates a vector of weights 
+     *
+     * note that the position of the weight determines which factor the weight
+     * will effect
+     */    
     std::vector<double> weights;
 
     EXPECT_PRED_FORMAT2(testing::DoubleLE, 0.00, 0.00);
-    patient->deleteTriagedPatient(llist, patient);
+    
+    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
+    to patient class */
 }
 
 TEST(triagedPatientTest, ninthWeightZero) {
-    TriagedPatient* patient = new TriagedPatient();
+    /* creates and fills patient class */
+    TriagedPatient* ppatient = new TriagedPatient();
     LinkedList* llist = new LinkedList();
 
-    patient->createFactorsLL(llist, patient);
-    
+    ppatient->createFactors(llist, ppatient);
+  
+    /* creates a vector of weights 
+     *
+     * note that the position of the weight determines which factor the weight
+     * will effect
+     */  
     std::vector<double> weights;
     weights.push_back(0.10);
     weights.push_back(0.20);
@@ -68,15 +97,23 @@ TEST(triagedPatientTest, ninthWeightZero) {
     weights.push_back(0.00);
 
     EXPECT_PRED_FORMAT2(testing::DoubleLE, 266.98, 266.98);
-    patient->deleteTriagedPatient(llist, patient);
+
+    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
+    to patient class */
 }
 
 TEST(triagedPatientTest, firstWeightZero) {
-    TriagedPatient* patient = new TriagedPatient();
+    /* creates and fills patient class */
+    TriagedPatient* ppatient = new TriagedPatient();
     LinkedList* llist = new LinkedList();
 
-    patient->createFactorsLL(llist, patient);
-    
+    ppatient->createFactors(llist, ppatient);
+
+    /* creates a vector of weights 
+     *
+     * note that the position of the weight determines which factor the weight
+     * will effect
+     */
     std::vector<double> weights;
     weights.push_back(0.00);
     weights.push_back(0.20);
@@ -89,16 +126,23 @@ TEST(triagedPatientTest, firstWeightZero) {
     weights.push_back(0.90);
 
     EXPECT_PRED_FORMAT2(testing::DoubleLE, 349.08, 349.08);
-    patient->deleteTriagedPatient(llist, patient);
+
+    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
+    to patient class */
 }
 
 TEST(triagedPatientTest, allWeightsZero) {
-    TriagedPatient* patient = new TriagedPatient();
+    /* creates and fills patient class */
+    TriagedPatient* ppatient = new TriagedPatient();
     LinkedList* llist = new LinkedList();
-    LinkedList::LLNODE *pnode = NULL;
 
-    patient->createFactorsLL(llist, patient);
-    
+    ppatient->createFactors(llist, ppatient);
+
+    /* creates a vector of weights 
+     *
+     * note that the position of the weight determines which factor the weight
+     * will effect
+     */
     std::vector<double> weights;
     weights.push_back(0.00);
     weights.push_back(0.00);
@@ -111,7 +155,9 @@ TEST(triagedPatientTest, allWeightsZero) {
     weights.push_back(0.00);
 
     EXPECT_PRED_FORMAT2(testing::DoubleLE, 0.00, 0.00);
-    patient->deleteTriagedPatient(llist, patient);
+
+    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
+    to patient class */
 }
 
 

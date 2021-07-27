@@ -23,14 +23,14 @@ class LinkedList {
 
     LLIST* create (void);
     int destroy (LLIST* pll);
-    int addhead (LLIST* pll, double* data);
-    int addtail (LLIST* pll, double* data);
+    int addhead (LLIST* pll, double* pdata);
+    int addtail (LLIST* pll, double* pdata);
     LLNODE* get_first_node (LLIST* pll);
     LLNODE* get_last_node (LLIST* pll);
     LLNODE* get_next_node (LLNODE* pnode);
     LLNODE* get_prev_node (LLNODE* pnode);
-    int add_before (LLIST* pll, LLNODE* pnode, double* data);
-    int add_after (LLIST* pll, LLNODE* pnode, double* data);
+    int add_before (LLIST* pll, LLNODE* pnode, double* pdata);
+    int add_after (LLIST* pll, LLNODE* pnode, double* pdata);
     int deletenode (LLIST* pll, LLNODE* pnode);
 
   private:
