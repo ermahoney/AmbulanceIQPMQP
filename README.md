@@ -19,10 +19,14 @@ Time (according to doc/presentations/TimeOfInformation.ppt)
 - e_rh – Time of transfer of patient’s history and vitals
 - Extraction time – time between t_r and s_rh
 
-Other
+Patient
 - Retrievable welfare – The patient’s likelihood of survival, based on a variety of factors such as blood loss, distance from EMS, etc. 
 - Point of injury – location where the patient was injured 
 
 Drones
 - Remotely piloted drone - drone piloted by a person from a control location that is not inside the drone
 - Autonomous drone - drone that is piloted by artificial intelligence that may reside in the drone
+
+Development
+- Unit test -
+- Test driven development tests - 
