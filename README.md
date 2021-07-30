@@ -28,5 +28,5 @@ Drones
 - Autonomous drone - drone that is piloted by artificial intelligence that may reside in the drone
 
 Development
-- Unit test -
-- Test driven development tests - 
+- Unit test - tests of functions that are created after the function is implemented. They deliberately exercise each of the paths through the logic. They are therefore vulnerable to the same logical mistakes as the person who wrote the function.
+- Test driven development tests - created before the function is implemented. The test is informed by the requirements, having no information about the implementation. The writer of the test considers all of the scenarios in which the function is to operate, and what possible inputs it can receive. If the function is to act defensively, the rejection actions should be checked. A set of test cases that represent the situations in which the function is to operate are created. The right answer for these test cases is figured out. The not-yet-implemented function is invoked, and its answer should be detected as being wrong for at least one test case. 
