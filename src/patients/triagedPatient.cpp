@@ -7,7 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <stdio.h>
-#include "linkedlist.hpp"
+#include "../common/linkedlist.hpp"
 #include "triagedPatient.hpp"
 
 

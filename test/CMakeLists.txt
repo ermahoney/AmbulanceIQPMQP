@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-set(This libtest)
+set(This srctest)
 
 set(Sources
-    triagedPatientTest.cpp
+    triagedPatientTestCopy.cpp
 )
 
 add_executable(${This} ${Sources})
 
 target_link_libraries(${This} PUBLIC
     gtest_main
-    lib
+    src
 )
 
 add_test(

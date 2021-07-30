@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
-#include "linkedlist.hpp"
+#include "../common/linkedlist.hpp"
 
 class TriagedPatient {
     public:
