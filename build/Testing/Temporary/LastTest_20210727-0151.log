@@ -1,10 +1,10 @@
-Start testing: Jul 27 10:13 EDT
+Start testing: Jul 27 16:43 EDT
 ----------------------------------------------------------
 1/1 Testing: AIQPMQPtest
 1/1 Test: AIQPMQPtest
 Command: "/home/ammiera/AmbulanceIQPMQP/build/test/AIQPMQPtest"
 Directory: /home/ammiera/AmbulanceIQPMQP/build/test
-"AIQPMQPtest" start time: Jul 27 10:13 EDT
+"AIQPMQPtest" start time: Jul 27 16:43 EDT
 Output:
 ----------------------------------------------------------
 Running main() from /home/ammiera/AmbulanceIQPMQP/ext/googletest/googletest/src/gtest_main.cc
@@ -44,8 +44,8 @@ Running main() from /home/ammiera/AmbulanceIQPMQP/ext/googletest/googletest/src/
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"AIQPMQPtest" end time: Jul 27 10:13 EDT
+"AIQPMQPtest" end time: Jul 27 16:43 EDT
 "AIQPMQPtest" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jul 27 10:13 EDT
+End testing: Jul 27 16:43 EDT

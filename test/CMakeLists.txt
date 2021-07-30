@@ -1,15 +1,16 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-set(This AIQPMQPtest)
+set(This libtest)
 
 set(Sources
     triagedPatientTest.cpp
 )
 
 add_executable(${This} ${Sources})
+
 target_link_libraries(${This} PUBLIC
     gtest_main
-    AIQPMQPsrc
+    lib
 )
 
 add_test(

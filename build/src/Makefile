@@ -80,28 +80,6 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -135,6 +113,28 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/ammiera/AmbulanceIQPMQP/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ammiera/AmbulanceIQPMQP/build/CMakeFiles /home/ammiera/AmbulanceIQPMQP/build/src/CMakeFiles/progress.marks
@@ -167,75 +167,6 @@ depend:
 	cd /home/ammiera/AmbulanceIQPMQP/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-src/CMakeFiles/AIQPMQPsrc.dir/rule:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/AIQPMQPsrc.dir/rule
-.PHONY : src/CMakeFiles/AIQPMQPsrc.dir/rule
-
-# Convenience name for target.
-AIQPMQPsrc: src/CMakeFiles/AIQPMQPsrc.dir/rule
-
-.PHONY : AIQPMQPsrc
-
-# fast build rule for target.
-AIQPMQPsrc/fast:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/build
-.PHONY : AIQPMQPsrc/fast
-
-linkedlist.o: linkedlist.cpp.o
-
-.PHONY : linkedlist.o
-
-# target to build an object file
-linkedlist.cpp.o:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/linkedlist.cpp.o
-.PHONY : linkedlist.cpp.o
-
-linkedlist.i: linkedlist.cpp.i
-
-.PHONY : linkedlist.i
-
-# target to preprocess a source file
-linkedlist.cpp.i:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/linkedlist.cpp.i
-.PHONY : linkedlist.cpp.i
-
-linkedlist.s: linkedlist.cpp.s
-
-.PHONY : linkedlist.s
-
-# target to generate assembly for a file
-linkedlist.cpp.s:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/linkedlist.cpp.s
-.PHONY : linkedlist.cpp.s
-
-triagedPatient.o: triagedPatient.cpp.o
-
-.PHONY : triagedPatient.o
-
-# target to build an object file
-triagedPatient.cpp.o:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/triagedPatient.cpp.o
-.PHONY : triagedPatient.cpp.o
-
-triagedPatient.i: triagedPatient.cpp.i
-
-.PHONY : triagedPatient.i
-
-# target to preprocess a source file
-triagedPatient.cpp.i:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/triagedPatient.cpp.i
-.PHONY : triagedPatient.cpp.i
-
-triagedPatient.s: triagedPatient.cpp.s
-
-.PHONY : triagedPatient.s
-
-# target to generate assembly for a file
-triagedPatient.cpp.s:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/triagedPatient.cpp.s
-.PHONY : triagedPatient.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -244,18 +175,11 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... AIQPMQPsrc"
-	@echo "... linkedlist.o"
-	@echo "... linkedlist.i"
-	@echo "... linkedlist.s"
-	@echo "... triagedPatient.o"
-	@echo "... triagedPatient.i"
-	@echo "... triagedPatient.s"
+	@echo "... edit_cache"
+	@echo "... test"
 .PHONY : help
 
 

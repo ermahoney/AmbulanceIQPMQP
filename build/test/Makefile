@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-test/CMakeFiles/AIQPMQPtest.dir/rule:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/AIQPMQPtest.dir/rule
-.PHONY : test/CMakeFiles/AIQPMQPtest.dir/rule
+test/CMakeFiles/libtest.dir/rule:
+	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/libtest.dir/rule
+.PHONY : test/CMakeFiles/libtest.dir/rule
 
 # Convenience name for target.
-AIQPMQPtest: test/CMakeFiles/AIQPMQPtest.dir/rule
+libtest: test/CMakeFiles/libtest.dir/rule
 
-.PHONY : AIQPMQPtest
+.PHONY : libtest
 
 # fast build rule for target.
-AIQPMQPtest/fast:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/AIQPMQPtest.dir/build.make test/CMakeFiles/AIQPMQPtest.dir/build
-.PHONY : AIQPMQPtest/fast
+libtest/fast:
+	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/libtest.dir/build.make test/CMakeFiles/libtest.dir/build
+.PHONY : libtest/fast
 
 triagedPatientTest.o: triagedPatientTest.cpp.o
 
@@ -188,7 +188,7 @@ triagedPatientTest.o: triagedPatientTest.cpp.o
 
 # target to build an object file
 triagedPatientTest.cpp.o:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/AIQPMQPtest.dir/build.make test/CMakeFiles/AIQPMQPtest.dir/triagedPatientTest.cpp.o
+	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/libtest.dir/build.make test/CMakeFiles/libtest.dir/triagedPatientTest.cpp.o
 .PHONY : triagedPatientTest.cpp.o
 
 triagedPatientTest.i: triagedPatientTest.cpp.i
@@ -197,7 +197,7 @@ triagedPatientTest.i: triagedPatientTest.cpp.i
 
 # target to preprocess a source file
 triagedPatientTest.cpp.i:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/AIQPMQPtest.dir/build.make test/CMakeFiles/AIQPMQPtest.dir/triagedPatientTest.cpp.i
+	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/libtest.dir/build.make test/CMakeFiles/libtest.dir/triagedPatientTest.cpp.i
 .PHONY : triagedPatientTest.cpp.i
 
 triagedPatientTest.s: triagedPatientTest.cpp.s
@@ -206,7 +206,7 @@ triagedPatientTest.s: triagedPatientTest.cpp.s
 
 # target to generate assembly for a file
 triagedPatientTest.cpp.s:
-	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/AIQPMQPtest.dir/build.make test/CMakeFiles/AIQPMQPtest.dir/triagedPatientTest.cpp.s
+	cd /home/ammiera/AmbulanceIQPMQP/build && $(MAKE) -f test/CMakeFiles/libtest.dir/build.make test/CMakeFiles/libtest.dir/triagedPatientTest.cpp.s
 .PHONY : triagedPatientTest.cpp.s
 
 # Help Target
@@ -222,7 +222,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... AIQPMQPtest"
+	@echo "... libtest"
 	@echo "... triagedPatientTest.o"
 	@echo "... triagedPatientTest.i"
 	@echo "... triagedPatientTest.s"

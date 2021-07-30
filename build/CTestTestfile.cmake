@@ -7,3 +7,4 @@
 subdirs("ext")
 subdirs("src")
 subdirs("test")
+subdirs("lib")

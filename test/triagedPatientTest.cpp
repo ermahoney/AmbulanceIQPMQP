@@ -1,8 +1,10 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <stdio.h>
-#include "../src/linkedlist.hpp"
-#include "../src/triagedPatient.hpp"
+#include "../lib/core/linkedlist.hpp"
+#include "../lib/core/triagedPatient.hpp"
+
+
 
 TEST(triagedPatientTest, nineWeights) {
     /* creates and fills patient class */
@@ -32,6 +34,8 @@ TEST(triagedPatientTest, nineWeights) {
     to patient class */
 }
 
+
+
 TEST(triagedPatientTest, oneWeight) {
     /* creates and fills patient class */
     TriagedPatient* ppatient = new TriagedPatient();
@@ -53,6 +57,8 @@ TEST(triagedPatientTest, oneWeight) {
     to patient class */
 }
 
+
+
 TEST(triagedPatientTest, noWeights) {
     /* creates and fills patient class */
     TriagedPatient* ppatient = new TriagedPatient();
@@ -72,6 +78,8 @@ TEST(triagedPatientTest, noWeights) {
     ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
     to patient class */
 }
+
+
 
 TEST(triagedPatientTest, ninthWeightZero) {
     /* creates and fills patient class */
@@ -102,6 +110,8 @@ TEST(triagedPatientTest, ninthWeightZero) {
     to patient class */
 }
 
+
+
 TEST(triagedPatientTest, firstWeightZero) {
     /* creates and fills patient class */
     TriagedPatient* ppatient = new TriagedPatient();
@@ -130,6 +140,8 @@ TEST(triagedPatientTest, firstWeightZero) {
     ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
     to patient class */
 }
+
+
 
 TEST(triagedPatientTest, allWeightsZero) {
     /* creates and fills patient class */

@@ -220,30 +220,30 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named AIQPMQPsrc
+# Target rules for targets named libtest
 
 # Build rule for target.
-AIQPMQPsrc: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AIQPMQPsrc
-.PHONY : AIQPMQPsrc
+libtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libtest
+.PHONY : libtest
 
 # fast build rule for target.
-AIQPMQPsrc/fast:
-	$(MAKE) -f src/CMakeFiles/AIQPMQPsrc.dir/build.make src/CMakeFiles/AIQPMQPsrc.dir/build
-.PHONY : AIQPMQPsrc/fast
+libtest/fast:
+	$(MAKE) -f test/CMakeFiles/libtest.dir/build.make test/CMakeFiles/libtest.dir/build
+.PHONY : libtest/fast
 
 #=============================================================================
-# Target rules for targets named AIQPMQPtest
+# Target rules for targets named lib
 
 # Build rule for target.
-AIQPMQPtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AIQPMQPtest
-.PHONY : AIQPMQPtest
+lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lib
+.PHONY : lib
 
 # fast build rule for target.
-AIQPMQPtest/fast:
-	$(MAKE) -f test/CMakeFiles/AIQPMQPtest.dir/build.make test/CMakeFiles/AIQPMQPtest.dir/build
-.PHONY : AIQPMQPtest/fast
+lib/fast:
+	$(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/build
+.PHONY : lib/fast
 
 # Help Target
 help:
@@ -262,8 +262,8 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... AIQPMQPsrc"
-	@echo "... AIQPMQPtest"
+	@echo "... libtest"
+	@echo "... lib"
 .PHONY : help
 
 
