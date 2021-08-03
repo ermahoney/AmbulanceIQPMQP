@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(src) # need to look at more examples
+set(THIS src)
 
-# .cpp files
-add_library(${PROJECT_NAME} 
+# .cpp file locations
+add_library(${THIS} 
     common/linkedlist.cpp
     patients/triagedPatient.cpp
 )
 
 # .hpp file locations
-target_include_directories(${PROJECT_NAME} PUBLIC
-    ${PROJECT_SOURCE_DIR}/common
-    ${PROJECT_SOURCE_DIR}/patients
+target_include_directories(${THIS} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/common
+    ${CMAKE_CURRENT_SOURCE_DIR}/patients
 )
