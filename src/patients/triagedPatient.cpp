@@ -29,10 +29,9 @@ double calculateRetrievableWelfare(std::vector<double> weights,
     LinkedList::LLNODE *pnode = llist->get_first_node(ppatient->factors);
     for (int i = 0; i < weights.size(); i++ ) {
 
-        /* only consideres non-zero weights */
+        /* only consideres non-zero weights and valid patient data*/
         if (weights.at(i) != 0.0) {
 
-            /* only considers patient data if there is not an error */
             if (*pnode->data != -1.0) 
             {
                 weightedSum += weights.at(i) * (*(pnode->data));
