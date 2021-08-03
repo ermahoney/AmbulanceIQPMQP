@@ -1,33 +1,44 @@
 cmake_minimum_required(VERSION 3.16.3)
 
+
+
+# Creates the project library
+#______________________________________________________________________________#
+
+# sets varaibles
 set(THIS src)
 set(THIS_TEST src_test)
 
-# .cpp file locations
+# enables testing for src
+enable_testing()
+
+# builds src library from the included .cpp files
 add_library(${THIS} 
     common/linkedlist.cpp
     patients/triagedPatient.cpp
 )
 
-# .hpp file locations
+# locates .hpp file directories when compiling project
 target_include_directories(${THIS} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/common
     ${CMAKE_CURRENT_SOURCE_DIR}/patients
 )
 
-# src test executable
+
+
+# Tests the project
+#______________________________________________________________________________#
+
+# builds src test executable
 add_executable(${THIS_TEST} 
     patients/triagedPatientTest.cpp
 )
 
-# src test linker
+# links libraries to executable
 target_link_libraries(${THIS_TEST} PUBLIC
     gtest_main
     ${THIS}
 )
 
-# src test tests
-add_test(
-    NAME ${THIS_TEST}
-    COMMAND ${THIS_TEST}
-)
+include(GoogleTest)
+gtest_discover_tests(${THIS_TEST})

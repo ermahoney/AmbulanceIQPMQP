@@ -36,7 +36,6 @@
 
 
 # cmake
-
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -52,7 +51,6 @@ _deps
 
 
 # other
-
 build
 [Bb][Uu][Ii][Ll][Dd]
 
