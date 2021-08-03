@@ -10,52 +10,59 @@
 #include <vector>
 #include <iostream>
 #include "../common/linkedlist.hpp"
+#define DEBUG_BUILD
+
+#ifdef DEBUG_BUILD
+    #define DEBUG(x) printf(x)
+#endif
 
 class TriagedPatient {
+    
     public:
-        double *extractionTime;
-        double *burnPercent;
-        double *respirationRate;
-        double *tidalVolume;
-        double *pulse;
-        double *systolicPressure;
-        double *diastolicPressure;
-        double *temperature;
-        double *bloodOxygen;
+
+        double* mExtractionTime;
+        double* mBurnPercent;
+        double* mRespirationRate;
+        double* mTidalVolume;
+        double* mPulse;
+        double* mSystolicPressure;
+        double* mDiastolicPressure;
+        double* mTemperature;
+        double* mBloodOxygen;
 
         LinkedList::LLIST* factors;
 
         TriagedPatient() {
             printf("2\n");
 
-            extractionTime = (double*) malloc(sizeof(double));
-            *extractionTime= getExtractionTime();
+            mExtractionTime = (double*) malloc(sizeof(double));
+            *mExtractionTime= getExtractionTime();
 
             printf("3\n");
 
-            burnPercent = (double*) malloc(sizeof(double));
-            *burnPercent = getBurnPercent();
+            mBurnPercent = (double*) malloc(sizeof(double));
+            *mBurnPercent = getBurnPercent();
 
-            respirationRate = (double*) malloc(sizeof(double));
-            *respirationRate = getRespirationRate();
+            mRespirationRate = (double*) malloc(sizeof(double));
+            *mRespirationRate = getRespirationRate();
 
-            tidalVolume = (double*) malloc(sizeof(double));
-            *tidalVolume = getTidalVolume();
+            mTidalVolume = (double*) malloc(sizeof(double));
+            *mTidalVolume = getTidalVolume();
 
-            pulse = (double*) malloc(sizeof(double));
-            *pulse = getPulse();
+            mPulse = (double*) malloc(sizeof(double));
+            *mPulse = getPulse();
 
-            systolicPressure = (double*) malloc(sizeof(double));
-            *systolicPressure = getSystolicPressure();
+            mSystolicPressure = (double*) malloc(sizeof(double));
+            *mSystolicPressure = getSystolicPressure();
 
-            diastolicPressure = (double*) malloc(sizeof(double));
-            *diastolicPressure = getDiastolicPressure();
+            mDiastolicPressure = (double*) malloc(sizeof(double));
+            *mDiastolicPressure = getDiastolicPressure();
 
-            temperature = (double*) malloc(sizeof(double));
-            *temperature = getTemperature();
+            mTemperature = (double*) malloc(sizeof(double));
+            *mTemperature = getTemperature();
 
-            bloodOxygen = (double*) malloc(sizeof(double));
-            *bloodOxygen = getBloodOxygen();
+            mBloodOxygen = (double*) malloc(sizeof(double));
+            *mBloodOxygen = getBloodOxygen();
         }
 
         double getExtractionTime();

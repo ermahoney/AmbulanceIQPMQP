@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(src)
+project(src) # need to look at more examples
 
 # .cpp files
 add_library(${PROJECT_NAME} 

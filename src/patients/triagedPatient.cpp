@@ -10,8 +10,6 @@
 #include "../common/linkedlist.hpp"
 #include "triagedPatient.hpp"
 
-
-
 /** Function that calculates the patients likelyhood of survival, i.e. 
  *  retrievable welfare
  * 
@@ -27,12 +25,19 @@ double calculateRetrievableWelfare(std::vector<double> weights,
     double weightedSum = 0;
 
     /* generates a weighted sum using the product of the patient factors and 
-     * the given weights 
-     */
+       the given weights */
     LinkedList::LLNODE *pnode = llist->get_first_node(ppatient->factors);
-    for (int i = 0; i < weights.size(); i++ ){
-        if (weights.at(i) != 0.0){
-            weightedSum += weights.at(i) * (*(pnode->data));
+    for (int i = 0; i < weights.size(); i++ ) {
+
+        /* only consideres non-zero weights */
+        if (weights.at(i) != 0.0) {
+
+            /* only considers patient data if there is not an error */
+            if (*pnode->data != -1.0) 
+            {
+                weightedSum += weights.at(i) * (*(pnode->data));
+            }
+
             pnode = llist->get_next_node(pnode);
         }
     }
@@ -51,39 +56,157 @@ double calculateRetrievableWelfare(std::vector<double> weights,
  * @note extractionTime is in minutes
 */
 double TriagedPatient::getExtractionTime() {
-    return 70;
+    double extractionTime;
+    extractionTime = 70;
+
+    if (extractionTime < 0) {
+        DEBUG("Error: extraction time cannot go below 0 minutes \n");
+        return -1.0;
+    }
+
+    return extractionTime;
 }
 
+/** Function that gets patient's body burn percentage
+ * 
+ * @param void
+ * @return patient's body burn percentage
+*/
 double TriagedPatient::getBurnPercent() {
-    return 90.9;
+    double burnPercent;
+    burnPercent = 90.9;
+
+    if (burnPercent < 0) {
+        DEBUG("Error: burn percent cannot go below 0%% \n");
+        return -1.0;
+    }
+
+    if (burnPercent > 100) {
+        DEBUG("Error: burn percent cannot go above 100%% \n");
+        return -1.0;
+    }
+
+    return burnPercent;
 }
 
+/** Function that gets patient's respiration rate
+ * 
+ * @param void
+ * @return patient's respiration rate in breaths per minute
+*/
 double TriagedPatient::getRespirationRate() {
-    return 20;
+    double respirationRate;
+    respirationRate = 20;
+
+    if (respirationRate < 0) {
+        DEBUG("Error: respiration rate cannot go below 0 breathes per minute \n");
+        return -1.0;
+    }
+
+    return respirationRate;
 }
 
+/** Function that gets patient's tidal volume
+ * 
+ * @param void
+ * @return patient's tidal volume in mL per kg
+*/
 double TriagedPatient::getTidalVolume() {
-    return 8;
+    double tidalVolume;
+    tidalVolume = 8;
+
+    if (tidalVolume < 0) {
+        DEBUG("Error: tidal volume cannot go below 0 mL per kg \n");
+        return -1.0;
+    }
+
+    return tidalVolume;
 }
 
+/** Function that gets patient's pulse
+ * 
+ * @param void
+ * @return patient's pulse in beats per min
+*/
 double TriagedPatient::getPulse() {
-    return 70;
+    double pulse;
+    pulse = 70;
+
+    if (pulse < 0) {
+        DEBUG("Error: pulse cannot go below 0 beats per min \n");
+        return -1.0;
+    }
+
+    return pulse;
 }
 
+/** Function that gets patient's systolic pressure
+ * 
+ * @param void
+ * @return patient's systolic pressure in mm Hg
+*/
 double TriagedPatient::getSystolicPressure() {
-    return 115;
+    double systolicPressure;
+    systolicPressure = 115;
+
+    if (systolicPressure < 0) {
+        DEBUG("Error: systolic pressure cannot go below 0 mm Hg \n");
+        return -1.0;
+    }
+
+    return systolicPressure;
 }
 
+/** Function that gets patient's diastolic pressure
+ * 
+ * @param void
+ * @return patient's diastolic pressure in mm Hg
+*/
 double TriagedPatient::getDiastolicPressure() {
-    return 70;
+    double diastolicPressure;
+    diastolicPressure = 70;
+
+    if (diastolicPressure < 0) {
+        DEBUG("Error: systolic pressure cannot go below 0 mm Hg \n");
+        return -1.0;
+    }
+
+    return diastolicPressure;
 }
 
+/** Function that gets patient's body temperature
+ * 
+ * @param void
+ * @return patient's body temperature in celcius
+*/
 double TriagedPatient::getTemperature() {
-    return 99.5;
+    double temperature;
+    temperature = 99.5;
+
+    return temperature;
 }
 
+
+/** Function that gets patient's blood oxygen
+ * 
+ * @param void
+ * @return patient's blood oxygen percentage
+*/
 double TriagedPatient::getBloodOxygen() {
-    return 99;
+    double bloodOxygen;
+    bloodOxygen = 99;
+
+    if (bloodOxygen < 0) {
+        DEBUG("Error: blood oxygen cannot go below 0%% \n");
+        return -1.0;
+    }
+
+    if (bloodOxygen > 100) {
+        DEBUG("Error: blood oxygen cannot go above 100%% \n");
+        return -1.0;
+    }
+
+    return bloodOxygen;
 }
 
 /** Function that creates a linked list of the patients vitals
@@ -101,15 +224,15 @@ int TriagedPatient::createFactors(LinkedList* llist, TriagedPatient* ppatient) {
     }
     
     /* creates a linked list of patient vitals */
-    llist->addtail(ppatient->factors, ppatient->extractionTime);
-    llist->addtail(ppatient->factors, ppatient->burnPercent);
-    llist->addtail(ppatient->factors, ppatient->respirationRate);
-    llist->addtail(ppatient->factors, ppatient->tidalVolume);
-    llist->addtail(ppatient->factors, ppatient->pulse);
-    llist->addtail(ppatient->factors, ppatient->systolicPressure);
-    llist->addtail(ppatient->factors, ppatient->diastolicPressure);
-    llist->addtail(ppatient->factors, ppatient->temperature);
-    llist->addtail(ppatient->factors, ppatient->bloodOxygen);
+    llist->addtail(ppatient->factors, ppatient->mExtractionTime);
+    llist->addtail(ppatient->factors, ppatient->mBurnPercent);
+    llist->addtail(ppatient->factors, ppatient->mRespirationRate);
+    llist->addtail(ppatient->factors, ppatient->mTidalVolume);
+    llist->addtail(ppatient->factors, ppatient->mPulse);
+    llist->addtail(ppatient->factors, ppatient->mSystolicPressure);
+    llist->addtail(ppatient->factors, ppatient->mDiastolicPressure);
+    llist->addtail(ppatient->factors, ppatient->mTemperature);
+    llist->addtail(ppatient->factors, ppatient->mBloodOxygen);
 
     return 0; /* indicates success */
 }
