@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <stdio.h>
-#include "../src/patients/triagedPatient.hpp"
-#include "../src/common/linkedlist.hpp"
+#include "triagedPatient.hpp"
+#include "../common/linkedlist.hpp"
 
 
 

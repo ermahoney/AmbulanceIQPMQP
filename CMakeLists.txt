@@ -7,4 +7,3 @@ enable_testing()
 # add subdirectories
 add_subdirectory(ext)
 add_subdirectory(src)
-add_subdirectory(test)
