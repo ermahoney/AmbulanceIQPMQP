@@ -95,7 +95,7 @@ LinkedList::LLNODE* LinkedList::get_prev_node (LinkedList::LLNODE* pnode) {
  * @param pdata is a pointer to the data
  * @return zero for success or nonzero for failure
  */
-int LinkedList::addhead (LinkedList::LLIST* pll, double* pdata) {
+int LinkedList::addhead (LinkedList::LLIST* pll, void* pdata) {
   LinkedList::LLNODE* pnode; /* pointer to the new node */
 
   pnode = (LinkedList::LLNODE*) calloc(1, sizeof(LinkedList::LLNODE));
@@ -132,7 +132,7 @@ int LinkedList::addhead (LinkedList::LLIST* pll, double* pdata) {
  * @param pdata is a pointer to the data
  * @return zero for success or nonzero for failure
  */
-int LinkedList::addtail (LinkedList::LLIST* pll, double* pdata) {
+int LinkedList::addtail (LinkedList::LLIST* pll, void* pdata) {
   LinkedList::LLNODE *pnode; /* pointer to the new node */
 
   pnode = (LinkedList::LLNODE *) calloc(1, sizeof(LinkedList::LLNODE));
@@ -228,7 +228,7 @@ int LinkedList::deletenode (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode) {
  * @param pdata is a pointer to the data
  * @return zero if success or nonzero on error
  */
-int LinkedList::add_before (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, double* pdata) {
+int LinkedList::add_before (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, void* pdata) {
   LinkedList::LLNODE* pnewnode = NULL;
   pnewnode = (LinkedList::LLNODE *) calloc (1, sizeof(LinkedList::LLNODE));
   if (pnewnode == NULL) {
@@ -281,7 +281,7 @@ int LinkedList::add_before (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, d
  * @param pdata is a pointer to the data
  * @return zero if success or nonzero on error
  */
-int LinkedList::add_after (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, double* pdata) {
+int LinkedList::add_after (LinkedList::LLIST* pll, LinkedList::LLNODE* pnode, void* pdata) {
   LinkedList::LLNODE *pnewnode = NULL;
   pnewnode = (LinkedList::LLNODE *) calloc (1, sizeof(LinkedList::LLNODE));
   if (pnewnode == NULL) {
