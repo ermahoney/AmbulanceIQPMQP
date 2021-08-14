@@ -38,8 +38,8 @@ double calculateRetrievableWelfare(std::vector<double> weights,
             {
                 weightedSum += weights.at(i) * (*static_cast<double*>(pnode->data));
             } else {
-                DEBUG("Error: the weight and data at %d will not be counted "
-                      "in the retrievable welfare calculation \n", i);
+                // DEBUG("Error: the weight and data at %d will not be counted "
+                //      "in the retrievable welfare calculation \n", i);
             }
 
             pnode = llist->get_next_node(pnode);
