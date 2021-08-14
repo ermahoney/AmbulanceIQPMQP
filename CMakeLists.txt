@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(AIQPMQP)
+# defines project and language
+project(AIQPMQP LANGUAGES CXX)
 
-# add subdirectories
+# adds subdirectories
 add_subdirectory(ext)
 add_subdirectory(src)
