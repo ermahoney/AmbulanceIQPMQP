@@ -7,7 +7,20 @@ This application allows users to both triage patients and get a ranking of the t
 # Language
 C++
 
+# Running the Application with VSCode
+Packages:
+- C/C++ by Microsoft
+- CMake by twxs
+- CMake Tools by Microsoft
+- CodeLLDB by Vadim Chugunov
+
 # Notes on Running the Application
+0. Check the blue bottom status bar and ensure that a compiler has been chosen
+1. Go to the project root directory CMake and press Ctrl+s to allow CMake to configure the project
+2. Ensure a build folder was created in the project rot directory, if so move on to step 3 else repeat step 1.
+3. Press f5 or run the project; this will take a while if it is the first build
+4. Check the blue bottom status bar and ensure that the start debug configuration is set to (msvc)
+5. Ensure a Hello World window pops up
 
 # Links for Sources
 
