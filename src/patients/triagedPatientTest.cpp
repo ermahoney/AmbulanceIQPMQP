@@ -1,21 +1,51 @@
-#include <gtest/gtest.h>
+/** Main file for triaged patient
+ *
+ * @author Alex Miera
+ *
+ */
+
 #include <vector>
+#include <iostream>
 #include <stdio.h>
-#include "triagedPatient.hpp"
 #include "../common/linkedlist.hpp"
+#include "triagedPatient.hpp"
+#include "triagedPatientTest.hpp"
 
+int main()
+{
+    /* gets test results
+     * note: true = pass and false = fail
+     */
+    TriagedPatientTest *ptest = new TriagedPatientTest();
 
+    /* displays if tests have passed or failed */
+    for (int i = 0; i < ptest->numTests; i++)
+    {
+        if (ptest->test[i])
+        {
+            printf("Test %i passed \n", i + 1);
+        }
+        else
+        {
+            printf("Test %i failed \n", i + 1);
+        }
+    }
 
-TEST(triagedPatientTest, nineWeights) {
+    return 0;
+}
+
+bool TriagedPatientTest::nineWeights()
+{
+    printf("Test 1: nineWeights() \n");
+
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
-    ppatient->createFactors(llist, ppatient);
-    
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
+
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
+     * note: the position of the weight determines which factor it will effect
      */
     std::vector<double> weights;
     weights.push_back(0.10);
@@ -28,71 +58,85 @@ TEST(triagedPatientTest, nineWeights) {
     weights.push_back(0.80);
     weights.push_back(0.90);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 356.08, 356.08);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 1 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 356.07 && retrievableWelfare < 356.09;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::oneWeight()
+{
+    printf("Test 2: oneWeight() \n");
 
-
-TEST(triagedPatientTest, oneWeight) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
-    ppatient->createFactors(llist, ppatient);
-
-     /* creates a vector of weights 
+    /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
-     */   
+     * note: the position of the weight determines which factor it will effect
+     */
     std::vector<double> weights;
     weights.push_back(0.10);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 70.00, 70.00);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 2 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 6.99 && retrievableWelfare < 7.01;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::noWeights()
+{
+    printf("Test 3: noWeights() \n");
 
-
-TEST(triagedPatientTest, noWeights) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
-
-    ppatient->createFactors(llist, ppatient);
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
-     */    
+     * note: the position of the weight determines which factor it will effect
+     */
     std::vector<double> weights;
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 0.00, 0.00);
-    
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 3 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > -0.01 && retrievableWelfare < 0.01;
+
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+    return pass;
 }
 
+bool TriagedPatientTest::ninthWeightZero()
+{
+    printf("Test 4: ninthWeightZero() \n");
 
-
-TEST(triagedPatientTest, ninthWeightZero) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
-    ppatient->createFactors(llist, ppatient);
-  
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
-     */  
+     * note: the position of the weight determines which factor it will effect
+     */
     std::vector<double> weights;
     weights.push_back(0.10);
     weights.push_back(0.20);
@@ -104,25 +148,30 @@ TEST(triagedPatientTest, ninthWeightZero) {
     weights.push_back(0.80);
     weights.push_back(0.00);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 266.98, 266.98);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 4 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 266.97 && retrievableWelfare < 266.99;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::firstWeightZero()
+{
+    printf("Test 5: firstWeightZero() \n");
 
-
-TEST(triagedPatientTest, firstWeightZero) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
-
-    ppatient->createFactors(llist, ppatient);
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
+     * note: the position of the weight determines which factor it will effect
      */
     std::vector<double> weights;
     weights.push_back(0.00);
@@ -135,25 +184,30 @@ TEST(triagedPatientTest, firstWeightZero) {
     weights.push_back(0.80);
     weights.push_back(0.90);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 349.08, 349.08);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 5 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 349.07 && retrievableWelfare < 349.09;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::allWeightsZero()
+{
+    printf("Test 6: allWeightsZero() \n");
 
-
-TEST(triagedPatientTest, allWeightsZero) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
-
-    ppatient->createFactors(llist, ppatient);
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
+     * note: the position of the weight determines which factor it will effect
      */
     std::vector<double> weights;
     weights.push_back(0.00);
@@ -166,60 +220,33 @@ TEST(triagedPatientTest, allWeightsZero) {
     weights.push_back(0.00);
     weights.push_back(0.00);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 0.00, 0.00);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 6 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > -00.01 && retrievableWelfare < 00.01;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::belowExtractionTimeLimit()
+{
+    printf("Test 7: belowExtractionTimeLimit() \n");
 
-
-TEST(triagedPatientTest, belowExtractionTimeLimit) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
-    ppatient->createFactors(llist, ppatient);
-
-    *(ppatient->mExtractionTime) = -10.0;
+    /* changes variable outside its appropriate range */
+    *(ppatient->mExtractionTime) = -1.00;
 
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
-     */
-    std::vector<double> weights;
-    weights.push_back(0.10);
-    weights.push_back(0.20);
-    weights.push_back(0.30);
-    weights.push_back(0.40);
-    weights.push_back(0.50);
-    weights.push_back(0.60);
-    weights.push_back(0.70);
-    weights.push_back(0.80);
-    weights.push_back(0.90);
-
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 347.08, 347.10);
-
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
-}
-
-
-
-TEST(triagedPatientTest, belowBurnPercentLimit) {
-    /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
-
-    ppatient->createFactors(llist, ppatient);
-
-    *(ppatient->mBurnPercent) = -0.01;
-
-    /* creates a vector of weights 
-     *
-     * note that the position of the weight determines which factor the weight
-     * will effect
+     * note: the position of the weight determines which factor it will effect
      */
     std::vector<double> weights;
     weights.push_back(0.10);
@@ -232,27 +259,33 @@ TEST(triagedPatientTest, belowBurnPercentLimit) {
     weights.push_back(0.80);
     weights.push_back(0.90);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 337.89, 337.90);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 7 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 349.07 && retrievableWelfare < 349.09;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::belowBurnPercentLimit()
+{
+    printf("Test 8: belowBurnPercentLimit() \n");
 
-
-TEST(triagedPatientTest, aboveBurnPercentLimit) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
-    ppatient->createFactors(llist, ppatient);
-
-    *(ppatient->mBurnPercent) = 100.01;
+    /* changes variable outside its appropriate range */
+    *(ppatient->mBurnPercent) = -1.00;
 
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
+     * note: the position of the weight determines which factor it will effect
      */
     std::vector<double> weights;
     weights.push_back(0.10);
@@ -265,27 +298,33 @@ TEST(triagedPatientTest, aboveBurnPercentLimit) {
     weights.push_back(0.80);
     weights.push_back(0.90);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 337.89, 337.9);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 8 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 337.89 && retrievableWelfare < 337.91;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
+
+    return pass;
 }
 
+bool TriagedPatientTest::belowBloodOxygenLimit()
+{
+    printf("Test 10: belowBloodOxygenLimit() \n");
 
-
-TEST(triagedPatientTest, belowBloodOxygenLimit) {
     /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
+    TriagedPatient *ppatient = new TriagedPatient();
+    LinkedList *llist = new LinkedList();
+    ppatient->createFactors(llist);
 
-    ppatient->createFactors(llist, ppatient);
-
-    *(ppatient->mBloodOxygen) = -0.01;
+    /* changes variable outside its appropriate range */
+    *(ppatient->mBloodOxygen) = -1.00;
 
     /* creates a vector of weights 
      *
-     * note that the position of the weight determines which factor the weight
-     * will effect
+     * note: the position of the weight determines which factor it will effect
      */
     std::vector<double> weights;
     weights.push_back(0.10);
@@ -298,41 +337,14 @@ TEST(triagedPatientTest, belowBloodOxygenLimit) {
     weights.push_back(0.80);
     weights.push_back(0.90);
 
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 266.98, 267);
+    /* gets and checks the retrievable welfare result against the expected result value */
+    double retrievableWelfare = ppatient->calculateRetrievableWelfare(weights, llist);
+    printf("Test 10 output: %f \n\n", retrievableWelfare);
+    bool pass = retrievableWelfare > 266.97 && retrievableWelfare < 266.99;
 
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
-}
+    /* frees the memory allocated to patient class */
+    ppatient->deleteTriagedPatient(llist);
+    free(ppatient);
 
-
-
-TEST(triagedPatientTest, aboveBloodOxygenLimit) {
-    /* creates and fills patient class */
-    TriagedPatient* ppatient = new TriagedPatient();
-    LinkedList* llist = new LinkedList();
-
-    ppatient->createFactors(llist, ppatient);
-
-    *(ppatient->mBloodOxygen) = 100.01;
-
-    /* creates a vector of weights 
-     *
-     * note that the position of the weight determines which factor the weight
-     * will effect
-     */
-    std::vector<double> weights;
-    weights.push_back(0.10);
-    weights.push_back(0.20);
-    weights.push_back(0.30);
-    weights.push_back(0.40);
-    weights.push_back(0.50);
-    weights.push_back(0.60);
-    weights.push_back(0.70);
-    weights.push_back(0.80);
-    weights.push_back(0.90);
-
-    EXPECT_PRED_FORMAT2(testing::DoubleLE, 266.98, 267);
-
-    ppatient->deleteTriagedPatient(llist, ppatient); /* frees the memory allocated
-    to patient class */
+    return pass;
 }

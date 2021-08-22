@@ -1,16 +1,22 @@
 # derived from https://github.com/lszl84/wx_cmake_template
 
-# check if wxWidgets is already installed in the system - using CMake's built in script FindwxWidgets
+# checks if wxWidgets is already installed in the system - using CMake's built in script FindwxWidgets
 find_package(wxWidgets QUIET)
 
+# adds wxWidgets library to the main project if it was found
 if (wxWidgets_FOUND)
     message(STATUS "Found preinstalled wxWidgets libraries at ${wxWidgets_LIBRARIES}")
     add_library(wxWidgets_external INTERFACE)
+
+# downloads wxWidgets from github if it was not found
 else()
     message(STATUS "Preinstalled wxWidgets not found.")
     message(STATUS "Will download and install wxWidgets in ${STAGED_INSTALL_PREFIX}")
     
+    # includes external project to main project
     include(ExternalProject)
+
+    # creates an external project that holds all of the wxWidgets code
     ExternalProject_Add(wxWidgets_external
         GIT_REPOSITORY
         https://github.com/wxWidgets/wxWidgets.git
@@ -40,7 +46,8 @@ else()
         1
         )
 
-
+    
+    # defines where the wxWidgets lib and include files will be placed
     set(wxWidgets_ROOT_DIR ${STAGED_INSTALL_PREFIX})
     file(TO_NATIVE_PATH "${wxWidgets_ROOT_DIR}" wxWidgets_ROOT_DIR)
     set(wxWidgets_ROOT_DIR ${wxWidgets_ROOT_DIR} CACHE INTERNAL "wxWidgets installation dir")

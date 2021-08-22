@@ -1,25 +1,32 @@
 # derived from https://github.com/lszl84/wx_cmake_template
 
+# defines the version of cmake that was first used to build
 cmake_minimum_required(VERSION 3.21.1 FATAL_ERROR)
 
+# defines the main project name and sets the language to c++
 project(AmbulanceIQPMQP LANGUAGES CXX)
 
+# defines the c++ language standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# ExternalProject base
+# defines custom directory to download, build, and configure external projects
 set_property(DIRECTORY PROPERTY EP_BASE ${CMAKE_BINARY_DIR}/subprojects)
 
+# defines where the wxWidgets lib and include files will be placed
 set(STAGED_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/stage)
 
+# tells cmake where to look for other cmake files in the subdirectory
 add_subdirectory(ext)
 
+# includes external project to main project
 include(ExternalProject)
+# creates an external project that holds all of the AmbulanceIQPMQP code
 ExternalProject_Add(${PROJECT_NAME}_core
   DEPENDS
     wxWidgets_external
   SOURCE_DIR
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/
   CMAKE_ARGS
     -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
     -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
@@ -35,4 +42,4 @@ ExternalProject_Add(${PROJECT_NAME}_core
     1
   INSTALL_COMMAND
     ""
-  )
+)

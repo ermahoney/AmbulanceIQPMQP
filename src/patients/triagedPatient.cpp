@@ -19,36 +19,47 @@
  * @param ppatient pointer to a patient class
  * @return weightedSum
 */
-double calculateRetrievableWelfare(std::vector<double> weights, 
-                                   LinkedList* llist,
-                                   struct TriagedPatient *ppatient) {
+double TriagedPatient::calculateRetrievableWelfare(std::vector<double> weights,
+                                                   LinkedList *llist)
+{
     double weightedSum = 0;
 
     /* generates a weighted sum using the product of the patient factors and 
        the given weights */
-    LinkedList::LLNODE *pnode = llist->get_first_node(ppatient->factors);
-    for (int i = 0; i < weights.size(); i++ ) {
-
+    LinkedList::LLNODE *pnode = llist->get_first_node(factors);
+    for (int i = 0; i < weights.size(); i++)
+    {
         /* only consideres non-zero weights */
-        if (weights.at(i) != 0.0) {
+        if (weights.at(i) > 0)
+        {
+            double data = *static_cast<double *>(pnode->data);
 
             /* converts void pointer to double pointer and checks if there was
                and error in the data*/
-            if (*static_cast<double*>(pnode->data) != -1.0) 
+            if (data > 0)
             {
-                weightedSum += weights.at(i) * (*static_cast<double*>(pnode->data));
-            } else {
-                // DEBUG("Error: the weight and data at %d will not be counted "
-                //      "in the retrievable welfare calculation \n", i);
+                printf("Var(s): data = %f \n", data);
+                weightedSum += weights.at(i) * data;
             }
-
-            pnode = llist->get_next_node(pnode);
+            else
+            {
+                printf("Error: the data %f at %d has an error will not be counted "
+                       "in the retrievable welfare calculation \n",
+                       data,
+                       i + 1);
+            }
         }
+        else
+        {
+            printf("Error: the weight %f at %d is equal to 0 or is negative will not be counted "
+                   "in the retrievable welfare calculation \n",
+                   weights.at(i),
+                   i + 1);
+        }
+        pnode = llist->get_next_node(pnode);
     }
     return weightedSum;
 }
-
-
 
 /** Function that gets the time it takes to transfer the patient from the
  *  ground to the field hospital starting at the time a distress signal
@@ -59,12 +70,14 @@ double calculateRetrievableWelfare(std::vector<double> weights,
  * @return extractionTime
  * @note extractionTime is in minutes
 */
-double TriagedPatient::getExtractionTime() {
+double TriagedPatient::getExtractionTime()
+{
     double extractionTime;
     extractionTime = 70;
 
-    if (extractionTime < 0) {
-        DEBUG("Error: extraction time cannot go below 0 minutes \n");
+    if (extractionTime < 0)
+    {
+        printf("Error: extraction time cannot go below 0 minutes \n");
         return -1.0;
     }
 
@@ -76,17 +89,20 @@ double TriagedPatient::getExtractionTime() {
  * @param void
  * @return patient's body burn percentage
 */
-double TriagedPatient::getBurnPercent() {
+double TriagedPatient::getBurnPercent()
+{
     double burnPercent;
     burnPercent = 90.9;
 
-    if (burnPercent < 0) {
-        DEBUG("Error: burn percent cannot go below 0%% \n");
+    if (burnPercent < 0)
+    {
+        printf("Error: burn percent cannot go below 0%% \n");
         return -1.0;
     }
 
-    if (burnPercent > 100) {
-        DEBUG("Error: burn percent cannot go above 100%% \n");
+    if (burnPercent > 100)
+    {
+        printf("Error: burn percent cannot go above 100%% \n");
         return -1.0;
     }
 
@@ -98,12 +114,14 @@ double TriagedPatient::getBurnPercent() {
  * @param void
  * @return patient's respiration rate in breaths per minute
 */
-double TriagedPatient::getRespirationRate() {
+double TriagedPatient::getRespirationRate()
+{
     double respirationRate;
     respirationRate = 20;
 
-    if (respirationRate < 0) {
-        DEBUG("Error: respiration rate cannot go below 0 breathes per minute \n");
+    if (respirationRate < 0)
+    {
+        printf("Error: respiration rate cannot go below 0 breathes per minute \n");
         return -1.0;
     }
 
@@ -115,12 +133,14 @@ double TriagedPatient::getRespirationRate() {
  * @param void
  * @return patient's tidal volume in mL per kg
 */
-double TriagedPatient::getTidalVolume() {
+double TriagedPatient::getTidalVolume()
+{
     double tidalVolume;
     tidalVolume = 8;
 
-    if (tidalVolume < 0) {
-        DEBUG("Error: tidal volume cannot go below 0 mL per kg \n");
+    if (tidalVolume < 0)
+    {
+        printf("Error: tidal volume cannot go below 0 mL per kg \n");
         return -1.0;
     }
 
@@ -132,12 +152,14 @@ double TriagedPatient::getTidalVolume() {
  * @param void
  * @return patient's pulse in beats per min
 */
-double TriagedPatient::getPulse() {
+double TriagedPatient::getPulse()
+{
     double pulse;
     pulse = 70;
 
-    if (pulse < 0) {
-        DEBUG("Error: pulse cannot go below 0 beats per min \n");
+    if (pulse < 0)
+    {
+        printf("Error: pulse cannot go below 0 beats per min \n");
         return -1.0;
     }
 
@@ -149,12 +171,14 @@ double TriagedPatient::getPulse() {
  * @param void
  * @return patient's systolic pressure in mm Hg
 */
-double TriagedPatient::getSystolicPressure() {
+double TriagedPatient::getSystolicPressure()
+{
     double systolicPressure;
     systolicPressure = 115;
 
-    if (systolicPressure < 0) {
-        DEBUG("Error: systolic pressure cannot go below 0 mm Hg \n");
+    if (systolicPressure < 0)
+    {
+        printf("Error: systolic pressure cannot go below 0 mm Hg \n");
         return -1.0;
     }
 
@@ -166,12 +190,14 @@ double TriagedPatient::getSystolicPressure() {
  * @param void
  * @return patient's diastolic pressure in mm Hg
 */
-double TriagedPatient::getDiastolicPressure() {
+double TriagedPatient::getDiastolicPressure()
+{
     double diastolicPressure;
     diastolicPressure = 70;
 
-    if (diastolicPressure < 0) {
-        DEBUG("Error: systolic pressure cannot go below 0 mm Hg \n");
+    if (diastolicPressure < 0)
+    {
+        printf("Error: systolic pressure cannot go below 0 mm Hg \n");
         return -1.0;
     }
 
@@ -183,30 +209,33 @@ double TriagedPatient::getDiastolicPressure() {
  * @param void
  * @return patient's body temperature in celcius
 */
-double TriagedPatient::getTemperature() {
+double TriagedPatient::getTemperature()
+{
     double temperature;
     temperature = 99.5;
 
     return temperature;
 }
 
-
 /** Function that gets patient's blood oxygen
  * 
  * @param void
  * @return patient's blood oxygen percentage
 */
-double TriagedPatient::getBloodOxygen() {
+double TriagedPatient::getBloodOxygen()
+{
     double bloodOxygen;
     bloodOxygen = 99;
 
-    if (bloodOxygen < 0) {
-        DEBUG("Error: blood oxygen cannot go below 0%% \n");
+    if (bloodOxygen < 0)
+    {
+        printf("Error: blood oxygen cannot go below 0%% \n");
         return -1.0;
     }
 
-    if (bloodOxygen > 100) {
-        DEBUG("Error: blood oxygen cannot go above 100%% \n");
+    if (bloodOxygen > 100)
+    {
+        printf("Error: blood oxygen cannot go above 100%% \n");
         return -1.0;
     }
 
@@ -219,24 +248,26 @@ double TriagedPatient::getBloodOxygen() {
  * @param ppatient pointer to a patient class
  * @return success (0) failure (1)
 */
-int TriagedPatient::createFactors(LinkedList* llist, TriagedPatient* ppatient) {
-    ppatient->factors = llist->create();
+int TriagedPatient::createFactors(LinkedList *llist)
+{
+    factors = llist->create();
 
     /* indicates there was an error creating the linked list */
-    if (ppatient->factors == NULL) {
+    if (factors == NULL)
+    {
         return 1; /* indicates failure */
     }
-    
+
     /* creates a linked list of patient vitals */
-    llist->addtail(ppatient->factors, ppatient->mExtractionTime);
-    llist->addtail(ppatient->factors, ppatient->mBurnPercent);
-    llist->addtail(ppatient->factors, ppatient->mRespirationRate);
-    llist->addtail(ppatient->factors, ppatient->mTidalVolume);
-    llist->addtail(ppatient->factors, ppatient->mPulse);
-    llist->addtail(ppatient->factors, ppatient->mSystolicPressure);
-    llist->addtail(ppatient->factors, ppatient->mDiastolicPressure);
-    llist->addtail(ppatient->factors, ppatient->mTemperature);
-    llist->addtail(ppatient->factors, ppatient->mBloodOxygen);
+    llist->addtail(factors, mExtractionTime);
+    llist->addtail(factors, mBurnPercent);
+    llist->addtail(factors, mRespirationRate);
+    llist->addtail(factors, mTidalVolume);
+    llist->addtail(factors, mPulse);
+    llist->addtail(factors, mSystolicPressure);
+    llist->addtail(factors, mDiastolicPressure);
+    llist->addtail(factors, mTemperature);
+    llist->addtail(factors, mBloodOxygen);
 
     return 0; /* indicates success */
 }
@@ -247,17 +278,28 @@ int TriagedPatient::createFactors(LinkedList* llist, TriagedPatient* ppatient) {
  * @param ppatient pointer to a patient class
  * @return success (0) failure (1)
 */
-int TriagedPatient::deleteTriagedPatient(LinkedList* llist, TriagedPatient* ppatient) {
+int TriagedPatient::deleteTriagedPatient(LinkedList *llist)
+{
     LinkedList::LLNODE *pnode = NULL;
 
     /* destroys each node of vitals data */
-    llist->get_first_node(ppatient->factors);
-    while (pnode != NULL) {
-        free(pnode->data); /* frees the vitals data */
-        llist->deletenode(ppatient->factors, pnode); /* frees memory allocated to
+    llist->get_first_node(factors);
+    while (pnode != NULL)
+    {
+        free(pnode->data);                      /* frees the vitals data */
+        llist->deletenode(factors, pnode);      /* frees memory allocated to
         the linked list node */
-        pnode = llist->get_first_node(ppatient->factors); /* finds the next node */
+        pnode = llist->get_first_node(factors); /* finds the next node */
     }
-    free(ppatient); /* frees patient class */
+
+    free(mExtractionTime); /* frees patient class */
+    free(mBurnPercent);
+    free(mRespirationRate);
+    free(mTidalVolume);
+    free(mPulse);
+    free(mSystolicPressure);
+    free(mDiastolicPressure);
+    free(mTemperature);
+    free(mBloodOxygen);
     return 0; /* indicates success */
 }

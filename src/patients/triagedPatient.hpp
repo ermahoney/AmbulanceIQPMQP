@@ -10,77 +10,68 @@
 #include <vector>
 #include <iostream>
 #include "../common/linkedlist.hpp"
-#define DEBUG_BUILD
 
-#ifdef DEBUG_BUILD
-    #define DEBUG(x) printf(x)
-#endif
+class TriagedPatient
+{
 
-class TriagedPatient {
-    
-    public:
+public:
+    double *mExtractionTime;
+    double *mBurnPercent;
+    double *mRespirationRate;
+    double *mTidalVolume;
+    double *mPulse;
+    double *mSystolicPressure;
+    double *mDiastolicPressure;
+    double *mTemperature;
+    double *mBloodOxygen;
 
-        double* mExtractionTime;
-        double* mBurnPercent;
-        double* mRespirationRate;
-        double* mTidalVolume;
-        double* mPulse;
-        double* mSystolicPressure;
-        double* mDiastolicPressure;
-        double* mTemperature;
-        double* mBloodOxygen;
+    LinkedList::LLIST *factors;
 
-        LinkedList::LLIST* factors;
+    TriagedPatient()
+    {
+        mExtractionTime = (double *)malloc(sizeof(double));
+        *mExtractionTime = getExtractionTime();
 
-        TriagedPatient() {
-            printf("2\n");
+        mBurnPercent = (double *)malloc(sizeof(double));
+        *mBurnPercent = getBurnPercent();
 
-            mExtractionTime = (double*) malloc(sizeof(double));
-            *mExtractionTime= getExtractionTime();
+        mRespirationRate = (double *)malloc(sizeof(double));
+        *mRespirationRate = getRespirationRate();
 
-            printf("3\n");
+        mTidalVolume = (double *)malloc(sizeof(double));
+        *mTidalVolume = getTidalVolume();
 
-            mBurnPercent = (double*) malloc(sizeof(double));
-            *mBurnPercent = getBurnPercent();
+        mPulse = (double *)malloc(sizeof(double));
+        *mPulse = getPulse();
 
-            mRespirationRate = (double*) malloc(sizeof(double));
-            *mRespirationRate = getRespirationRate();
+        mSystolicPressure = (double *)malloc(sizeof(double));
+        *mSystolicPressure = getSystolicPressure();
 
-            mTidalVolume = (double*) malloc(sizeof(double));
-            *mTidalVolume = getTidalVolume();
+        mDiastolicPressure = (double *)malloc(sizeof(double));
+        *mDiastolicPressure = getDiastolicPressure();
 
-            mPulse = (double*) malloc(sizeof(double));
-            *mPulse = getPulse();
+        mTemperature = (double *)malloc(sizeof(double));
+        *mTemperature = getTemperature();
 
-            mSystolicPressure = (double*) malloc(sizeof(double));
-            *mSystolicPressure = getSystolicPressure();
+        mBloodOxygen = (double *)malloc(sizeof(double));
+        *mBloodOxygen = getBloodOxygen();
+    }
 
-            mDiastolicPressure = (double*) malloc(sizeof(double));
-            *mDiastolicPressure = getDiastolicPressure();
+    double getExtractionTime();
+    double getBurnPercent();
+    double getRespirationRate();
+    double getTidalVolume();
+    double getPulse();
+    double getSystolicPressure();
+    double getDiastolicPressure();
+    double getTemperature();
+    double getBloodOxygen();
 
-            mTemperature = (double*) malloc(sizeof(double));
-            *mTemperature = getTemperature();
+    double TriagedPatient::calculateRetrievableWelfare(std::vector<double> weights,
+                                                       LinkedList *llist);
 
-            mBloodOxygen = (double*) malloc(sizeof(double));
-            *mBloodOxygen = getBloodOxygen();
-        }
-
-        double getExtractionTime();
-        double getBurnPercent();
-        double getRespirationRate();
-        double getTidalVolume();
-        double getPulse();
-        double getSystolicPressure();
-        double getDiastolicPressure();
-        double getTemperature();
-        double getBloodOxygen();
-
-        int createFactors(LinkedList* llist, TriagedPatient* ppatient);
-        int deleteTriagedPatient(LinkedList* llist, TriagedPatient* ppatient);
+    int createFactors(LinkedList *llist);
+    int deleteTriagedPatient(LinkedList *llist);
 };
-
-double calculateRetrievableWelfare(std::vector<double> weights, 
-                                   LinkedList* llist,
-                                   struct TriagedPatient *ppatient);
 
 #endif
