@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ext",
-    "\\ext\\wxwidgets",
-    "\\src\\patients"
+    "\\ext\\wxwidgets"
   ],
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

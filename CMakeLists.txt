@@ -1,11 +1,7 @@
 # derived from https://github.com/lszl84/wx_cmake_template
 
-<<<<<<< Updated upstream
-cmake_minimum_required(VERSION 3.21.1 FATAL_ERROR)
-=======
 # defines the version of cmake that was first used to build
 cmake_minimum_required(VERSION 3.17.20032601 FATAL_ERROR)
->>>>>>> Stashed changes
 
 project(AmbulanceIQPMQP LANGUAGES CXX)
 
