@@ -5,8 +5,8 @@
  *      Author: emilymahoney
  */
 
-#include <src/hospitals/fieldHospital.h>
-#include <src/hospitals/fieldHospitalTest.h>
+#include "../hospitals/fieldHospital.h"
+#include "../hospitals/fieldHospitalTest.h"
 #include <vector>
 #include <stdio.h>
 #include <stdbool.h>
@@ -184,10 +184,14 @@ bool fieldHospitalTest::testTop3FHOneFH(){
     fhA->setFactors(*factorsA);
 
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhA);
-    std::vector<std::string>* top3FH = new std::vector<std::string>();
-    top3FH->push_back(fhA->getFHName());
-    //TODO
-    bool isGood = true; //(*top3FH == (top3FieldHospitalsCalculator(myFieldHospitals, factorsA)));
+
+    LinkedList* allFactors = fhA->fieldHospital::getFactorsFHList(myFieldHospitals);
+    fieldHospital* thisFH =  new fieldHospital();
+    std::vector<std::string> top3FHResult = thisFH->top3FieldHospitalsCalculator(myFieldHospitals, allFactors);
+
+    //check that first field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool firstIsGood = top3FHResult.at(0) == fhA->getFHName();
+    bool isGood = (firstIsGood == true);
     return isGood;
 }
 
@@ -237,11 +241,16 @@ bool fieldHospitalTest::testTop3FHTwoFH(){
 
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhA);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhB);
-    std::vector<std::string>* top3FH = new std::vector<std::string>();
-    top3FH->push_back(fhA->getFHName());
-    top3FH->push_back(fhB->getFHName());
-    //TODO
-    bool isGood = true; //(*top3FH == (top3FieldHospitalsCalculator(myFieldHospitals, fhA->fieldHospital::getFactorsFHList(myFieldHospitals))));
+
+    LinkedList* allFactors = fhA->fieldHospital::getFactorsFHList(myFieldHospitals);
+    fieldHospital* thisFH =  new fieldHospital();
+    std::vector<std::string> top3FHResult = thisFH->top3FieldHospitalsCalculator(myFieldHospitals, allFactors);
+
+    //check that first field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool firstIsGood = top3FHResult.at(0) == fhA->getFHName();
+    //check that second field hospital in list returned by top3FieldHospitalsCalculator matches what i expect, if null, accept
+    bool secondIsGood = top3FHResult.at(1) == fhB->getFHName();
+    bool isGood = (firstIsGood == true) & (secondIsGood == true);
     return isGood;
 }
 
@@ -311,12 +320,18 @@ bool fieldHospitalTest::testTop3FHThreeFH(){
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhA);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhB);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhC);
-    std::vector<std::string>* top3FH = new std::vector<std::string>();
-    top3FH->push_back(fhA->getFHName());
-    top3FH->push_back(fhB->getFHName());
-    top3FH->push_back(fhC->getFHName()); //break this apart to do the comparison of strings too much in one line
-    //TODO
-    bool isGood = true; //(*top3FH == top3FieldHospitalsCalculator(myFieldHospitals, fhA->fieldHospital::getFactorsFHList(myFieldHospitals)));
+
+    LinkedList* allFactors = fhA->fieldHospital::getFactorsFHList(myFieldHospitals);
+    fieldHospital* thisFH =  new fieldHospital();
+    std::vector<std::string> top3FHResult = thisFH->top3FieldHospitalsCalculator(myFieldHospitals, allFactors);
+
+    //check that first field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool firstIsGood = top3FHResult.at(0) == fhA->getFHName();
+    //check that second field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool secondIsGood = top3FHResult.at(1) == fhB->getFHName();
+    //check that third field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool thirdIsGood = top3FHResult.at(2) == fhC->getFHName();
+    bool isGood = (firstIsGood == true) & (secondIsGood == true) & (thirdIsGood == true);
     return isGood;
 }
 
@@ -386,12 +401,18 @@ bool fieldHospitalTest::testTop3FHThreeFHFirstSecondSameSpot(){
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhA);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhB);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhC);
-    std::vector<std::string>* top3FH = new std::vector<std::string>();
-    top3FH->push_back(fhA->getFHName());
-    top3FH->push_back(fhB->getFHName());
-    top3FH->push_back(fhC->getFHName());
-    //TODO
-    bool isGood = true; //(*top3FH == (top3FieldHospitalsCalculator(myFieldHospitals, fhA->fieldHospital::getFactorsFHList(myFieldHospitals))));
+
+    LinkedList* allFactors = fhA->fieldHospital::getFactorsFHList(myFieldHospitals);
+    fieldHospital* thisFH =  new fieldHospital();
+    std::vector<std::string> top3FHResult = thisFH->top3FieldHospitalsCalculator(myFieldHospitals, allFactors);
+
+    //check that first field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool firstIsGood = top3FHResult.at(0) == fhA->getFHName();
+    //check that second field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool secondIsGood = top3FHResult.at(1) == fhB->getFHName();
+    //check that third field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool thirdIsGood = top3FHResult.at(2) == fhC->getFHName();
+    bool isGood = (firstIsGood == true) & (secondIsGood == true) & (thirdIsGood == true);
     return isGood;
 }
 
@@ -461,12 +482,18 @@ bool fieldHospitalTest::testTop3FHThreeFHSecondThirdSameSpot(){
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhA);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhB);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhC);
-    std::vector<std::string>* top3FH = new std::vector<std::string>();
-    top3FH->push_back(fhA->getFHName());
-    top3FH->push_back(fhB->getFHName());
-    top3FH->push_back(fhC->getFHName());
-    //TODO
-    bool isGood = true; //(*top3FH == (top3FieldHospitalsCalculator(myFieldHospitals, fhA->fieldHospital::getFactorsFHList(myFieldHospitals))));
+
+    LinkedList* allFactors = fhA->fieldHospital::getFactorsFHList(myFieldHospitals);
+    fieldHospital* thisFH =  new fieldHospital();
+    std::vector<std::string> top3FHResult = thisFH->top3FieldHospitalsCalculator(myFieldHospitals, allFactors);
+
+    //check that first field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool firstIsGood = top3FHResult.at(0) == fhA->getFHName();
+    //check that second field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool secondIsGood = top3FHResult.at(1) == fhB->getFHName();
+    //check that third field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool thirdIsGood = top3FHResult.at(2) == fhC->getFHName();
+    bool isGood = (firstIsGood == true) & (secondIsGood == true) & (thirdIsGood == true);
     return isGood;
 }
 
@@ -536,12 +563,18 @@ bool fieldHospitalTest::testTop3FHThreeFHAllSameSpot(){
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhA);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhB);
     myFieldHospitals->LinkedList::addtail(reinterpret_cast<LinkedList::LLIST *>(myFieldHospitals), fhC);
-    std::vector<std::string>* top3FH = new std::vector<std::string>();
-    top3FH->push_back(fhA->getFHName());
-    top3FH->push_back(fhB->getFHName());
-    top3FH->push_back(fhC->getFHName());
-    //TODO
-    bool isGood = true; //(*top3FH == (top3FieldHospitalsCalculator(myFieldHospitals, fhA->fieldHospital::getFactorsFHList(myFieldHospitals))));
+
+    LinkedList* allFactors = fhA->fieldHospital::getFactorsFHList(myFieldHospitals);
+    fieldHospital* thisFH =  new fieldHospital();
+    std::vector<std::string> top3FHResult = thisFH->top3FieldHospitalsCalculator(myFieldHospitals, allFactors);
+
+    //check that first field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool firstIsGood = top3FHResult.at(0) == fhA->getFHName();
+    //check that second field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool secondIsGood = top3FHResult.at(1) == fhB->getFHName();
+    //check that third field hospital in list returned by top3FieldHospitalsCalculator matches what i expect
+    bool thirdIsGood = top3FHResult.at(2) == fhC->getFHName();
+    bool isGood = (firstIsGood == true) & (secondIsGood == true) & (thirdIsGood == true);
     return isGood;
 }
 

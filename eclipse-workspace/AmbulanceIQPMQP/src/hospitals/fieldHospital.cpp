@@ -17,26 +17,11 @@
 #include <algorithm>
 #include <iterator>
 #include "../common/linkedlist.hpp"
-#include "../location/pinpoint.hpp"
+#include "../location/pinpoint.h"
 #include "../tests/AllMyTests.h"
-#include "../tests/Production.hpp"
+#include "../tests/Production.h"
 
-int main(int argc, char* argv[]) {
-	std::cout << "!!!Hello World, we are doing MQP!!!" << std::endl;
-	AllMyTests* tsP = new AllMyTests();
-	if(tsP->tests()){
-		Production* pP = new Production();
-		if(pP->prod(argc, *argv)){
-			std::cout << "Production passed." << std::endl;
-		}
-		delete(pP);
-	}
-	else{
-		std::cout << "Not all tests passed." << std::endl;
-	}
-	delete(tsP);
-	return 0;
-}
+
 
 /*
     Description: Calculates the weighed sum for a given set of weights and factors for a given field hospital

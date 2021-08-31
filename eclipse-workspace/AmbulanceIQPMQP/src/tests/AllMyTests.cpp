@@ -6,6 +6,25 @@
  */
 
 #include "AllMyTests.h"
+#include <iostream>
+#include "../tests/Production.h"
+
+int main(int argc, char* argv[]) {
+	std::cout << "!!!Hello World, we are doing MQP!!!" << std::endl;
+	AllMyTests* tsP = new AllMyTests();
+	if(tsP->tests()){
+		Production* pP = new Production();
+		if(pP->prod(argc, *argv)){
+			std::cout << "Production passed." << std::endl;
+		}
+		delete(pP);
+	}
+	else{
+		std::cout << "Not all tests passed." << std::endl;
+	}
+	delete(tsP);
+	return 0;
+}
 
 bool AllMyTests :: tests() {
 		//WEIGHTED SUM
@@ -73,7 +92,7 @@ bool AllMyTests :: tests() {
         //return fHROKAY;
         //return pEOKAY;
         //return pMOKAY;
-        return okay;
+        return pEOKAY;
     }
 
 
