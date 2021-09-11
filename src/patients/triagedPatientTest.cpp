@@ -4,18 +4,20 @@
  *
  */
 
+#include "../../src/patients/triagedPatient.hpp"
+#include "../../src/patients/triagedPatientTest.hpp"
+
 #include <vector>
 #include <iostream>
 #include <stdio.h>
-#include "../common/linkedlist.hpp"
-#include "triagedPatient.hpp"
-#include "triagedPatientTest.hpp"
+
+#include "../../src/common/linkedlist.hpp"
 
 int main()
 {
     /* gets test results
-     * note: true = pass and false = fail
-     */
+    * note: true = pass and false = fail
+    */
     TriagedPatientTest *ptest = new TriagedPatientTest();
 
     /* displays if tests have passed or failed */

@@ -67,8 +67,8 @@ public:
     double getTemperature();
     double getBloodOxygen();
 
-    double TriagedPatient::calculateRetrievableWelfare(std::vector<double> weights,
-                                                       LinkedList *llist);
+    double calculateRetrievableWelfare(std::vector<double> weights,
+                                       LinkedList *llist);
 
     int createFactors(LinkedList *llist);
     int deleteTriagedPatient(LinkedList *llist);
