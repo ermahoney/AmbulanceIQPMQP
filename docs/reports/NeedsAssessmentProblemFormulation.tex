@@ -1,0 +1,200 @@
+\documentclass[man]{article}
+\usepackage[american]{babel}
+\usepackage{authblk}
+\usepackage{blindtext}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\graphicspath{C:/Users/alexm/OneDrive/Documents/College/IQP/ProjectReports/NeedsAssessmentProblemFormulation/Images/}
+
+\title{Advanced Response Medical Emergency System (ARMES) Using Sensor Networks \& Machine Learning}
+\author{Therese Smith \\ Deparment of Computer Science \and Alexandria Miera \\ Deparment of Electrical and Computer Engineering}
+
+%\thanks{The following research was guided by a research outline generously provided by Stephen John Bitar's ECE 2799 course which was formed in conjunction with William Michalson}}
+
+\begin{document}
+  \maketitle
+  \newpage
+
+
+
+  \section{Market Research Points}
+    \begin{itemize}
+      \item \textbf{Derive customer requirements and expectations}
+      \begin{itemize}
+        \item \underline{Requirements:} secure, reliable
+        \item \underline{Expectations:} "...reduce Soldiers’ mental or physical
+        burden and allow them to react faster than their adversaries..." via "...effective augmentation...in areas of cognition, perception, and physical performance" \cite{usarmygrant}
+      \end{itemize}
+
+      \item \textbf{Find similar products and assess their desirability}
+      \begin{itemize}
+        \item \textbf{\emph{MEDHUB}} - "...automated electronic medical documentation and communication system designed to improve the way medics and hospitals share patient(s) information, such as vital signs, injuries and treatments, during medical evacuations." \cite{medhub}
+        \begin{itemize}
+          \item \underline{Pros:} uses preexisting satellities and communications frameworks, displays inbound patient ID number and status, alerts hospital slightly before patient arrives, collects and communicates patient's vitals, and provides medic with dosage calculators and visual cues
+          \item \underline{Cons:} does not organize and tag patients accordingly, does not suggest protocol to medics, and information display is centralized at the dashboard
+        \end{itemize}
+        \newpage
+
+        \item \textbf{\emph{Masimo}} - automated patient management system \cite{masimo}
+        \begin{itemize}
+          \item \underline{Pros:} integrates with 3rd party devices, connects to physicians tablet or smartphone, use specific and adaptable data layouts
+          \item \underline{Cons:} hospital oriented and is not meant for EMS
+        \end{itemize}
+
+        \item \textbf{\emph{Bewell}} - atuomated patient triage \cite{bewell}
+        \begin{itemize}
+          \item \underline{Pros:} automatically triages patients based on on-the-spot collected vitals and responses
+          \item \underline{Cons:} hospital oriented
+        \end{itemize}
+
+        \item \textbf{\emph{Diagnostic Robotics}} - predictive patient inervention, automated clinical assessment, and automated patient triage \cite{diagnosticrobotics}
+        \begin{itemize}
+          \item \underline{Pros:} easily integrable, growing predictive data set
+          \item \underline{Cons:} predictive patient inervention determined through patient's files and is insurance company oriented, automated clinical assessment is meant for routine patients, automated patient triage is based on patient's interpretations of their symptoms and acts like a pre-screening
+        \end{itemize}
+      \end{itemize}
+
+      \item \textbf{Determine the price points in the existing market}
+      \begin{itemize}
+        \item MEDHUB - not on market, used soley by the military
+        \item Masimo - not explicitly stated, must contact info-america@masimo.com
+        \item BeWell - \$8,000 per year \cite{bewell}
+        \item Diagnostic Robotics - not explicitly stated, must contact contact@diagnosticrobotics.com
+      \end{itemize}
+
+      \item \textbf{Identify possible sources of competition/partnership}
+      \begin{itemize}
+        \item Body Sensor Network Academic Community: \cite{gupta}, \cite{pollak}
+        \item U.S. Army Medical Material Development Activity \cite{medhub}
+      \end{itemize}
+
+      \newpage
+
+      \item \textbf{Determine the implicit and explicit requirements of the product}
+      \begin{itemize}
+        \item \underline{Implicit:} vitals collection device that is easily integrated into hospital equiptment, EMS application that displays patient data and provides EMTs with with protocol suggestions, dosage suggestions, and automated documentation
+        \item \underline{Explicit:} EMS application that triages and tags patients based on vitals and EMT inputs, determines patient location and maps quickest the route to the patient and back to the medical center, supplies patient(s) with medical supplies and support if EMS cannot immediately reach patient(s)
+      \end{itemize}
+
+      \item \textbf{Identify possible intellectual property concerns}
+      \begin{itemize}
+        \item Dosage suggestions were already implemented by MEDHUB
+        \item Automated documentation was already implemented by MEDHUB
+      \end{itemize}
+    \end{itemize}
+
+  \newpage
+
+
+
+  \section{Questions}
+    \begin{itemize}
+      \item \textbf{Who is your market?}
+      ~\\Military Medics, U.S. Military
+
+      \item \textbf{Why is your product of interest to this market?}
+      ~\\Adds valuable features to preexisting systems to further improve the effectiveness of military medics, especially in mass casualty events
+
+      \item \textbf{What do your customers explicitly state (or what have you been able to discover) that they want from your product?}
+      ~\\Ability to augment cognition, perception, and physical performance of military personnel
+
+      \item \textbf{What might your customers implicitly expect from your product?}
+      ~\\Security and reliability
+
+      \item \textbf{What is the minimum capability product must have?}
+      ~\\Triages, tags, and localizes patients based on collected vitals and EMS input
+
+      \item \textbf{What is the relative importance of additional features of your product?}
+      \begin{itemize}
+        \item \underline{Essential:}
+        \begin{itemize}
+          \item App that can access patient triage results is essential to providing all relevant medical personnel situational awareness
+          \item Drone that hovers high above patient(s) is essential to routing inforation to and from medics and dropping supplies to patient(s) if medics are not avalible.
+        \end{itemize}
+
+        \item \underline{Not essential:} an automated documentation system and dosage suggestor is not essential because a similar system has already been vetted by the U.S. Army Medical Material Development Activity \cite{medhub}; protocol suggestions are not essential to the core of the product, but may be an important feature for further research because it has not been well tested or researched
+      \end{itemize}
+      \newpage
+
+      \item \textbf{Will your product satisfy the needs of your market?}
+      ~\\Yes, by furthering the capabilities of current systems.
+
+      \item \textbf{What evidence do you have that it will do so?}
+      ~\\Current systems being used by the military do not mention the proposed capabilities and features
+    \end{itemize}
+  \newpage
+
+
+
+  \section{Outline}
+    \begin{enumerate}
+      \item \textbf{Introduction}
+        \begin{enumerate}
+          \item \textbf{Introduce your products} - The technological sphere has recently undergone a shift from specialization to interdisciplinarity; the renaissance of the 21st century. As a result, different technologies are becoming more integrated and interconnected which builds on the networking concept of the internet of things (IoT). Different sensors and devices are working as one to gather or process data, communicate information, and create knowledge. Though, due to vast size of IoT and technological boundaries, there are many challanges that must be confronted in order to make the system efficient, secure, and effective. Those challenges include energy usage, scalability, security, communicability, and heterogeneous iterconnectivity \cite{kranengurg}. The quantity side of communicability is well researched but the quality side is neglected. Large amounts of data are being gathered and processed into information but that information must be appropriately visually or verbally communicated in order for the system to be effective. This is particularly true of medical IoT where the goal is to improve the mental and physical capacity of overburdened medical staff. The goal of ARMES is to collect, organize, and transmit patient vitals and information for emergency medical services (EMS) and hospitals. ARMES is setup to collect patient vitals and route data through a drone out to EMS or the inbound hospital. Additionally, ARMES is setup to identify the location of the patient and find the quickest/safest route for EMS to get to the patient and back to the closest/most relevant hospital. If EMS cannot immediately extract the patient, ARMES can also use location data to send a drone to drop medical supplies and well as provide verbal or visual medical support through routing communications from EMS to the patient. Hospital personnel recieve the information via a secure computer or smartphone app that visually triages and tags the patients based on their vitals and EMS input as well as idenitfies the location and status of patients in an interactive map view. The triage list and status map give hospital perssonel and EMS information on patients as a whole. Alternatively, individual patient data can be further explored by simply tapping on a patient within the triage list or interactive map.
+          \newpage
+
+          \item \textbf{Explain why you expect your product to have market appeal} - Triage is already used by EMS and emergency rooms to manually sort patients based on the severity of their injuries. ARMES will automate the sorting process for EMS in mass casualty events and for triage nurses in emergency rooms and provide additional functionality to further improve medical staff's situational awareness over their patients. Ultimately, ARMES will improve the mental and physical capacity of medical staff which in turn improves their efficiency and effectiveness which is inline with the military's goals.
+        \end{enumerate}
+
+      \item \textbf{Market Research}
+        \begin{enumerate}
+          \item \textbf{Identify your market(s) and explain how you conducted market research} - In its early phase, ARMES will be built for military medical services. Later on, the system may be built for public and private emergency medical services. Market reserach was centered around the U.S. Army grant as well as current technologies being used by the military. Public competitors were also identified for the sake of understanding the pros and cons of avalible technology.
+
+          \item \textbf{Describe the results your research yielded} - Research yielded public competitors are hospital or home oriented (static) and do not have any avalible technologies that explore the EMS domain nor explore the seamless integration of EMS and hospital data. Private competators/partners do explore the EMS domain and focus on automated documentation and patient data exchange between EMS and hospitals but do not cover the full spectrum of funtionality that ARMES proposes.
+
+          \item \textbf{Describe the conclusions you have drawn from the research} - ARMES fits a unique sector in the medical field that has not yet been actively explored by either civilian and military researchers.
+        \end{enumerate}
+
+      \item \textbf{Customer Requirements}
+        \begin{enumerate}
+          \item \textbf{List the customer requirements for the product derived from the market research}
+            \begin{itemize}
+              \item \underline{Requirements:} secure, reliable
+              \item \underline{Expectations:} "...reduce Soldiers’ mental or physical
+              burden and allow them to react faster than their adversaries..." via "...effective augmentation...in areas of cognition, perception, and physical performance" \cite{usarmygrant}
+            \end{itemize}
+
+          \item \textbf{Discuss both explicit and implied requirements}
+            \begin{itemize}
+              \item \underline{Implicit:} vitals collection device that is easily integrated into hospital equiptment, EMS application that displays patient data and provides EMTs with with protocol suggestions, dosage suggestions, and automated documentation
+              \item \underline{Explicit:} EMS application that triages and tags patients based on vitals and EMT inputs, determines patient location and maps quickest the route to the patient and back to the medical center, supplies patient(s) with medical supplies and support if EMS cannot immediately reach patient(s)
+            \end{itemize}
+        \end{enumerate}
+        \newpage
+
+      \item \textbf{Product Requirements}
+        \begin{enumerate}
+          \item \textbf{List the specific requirements for your product}
+            \begin{enumerate}
+              \item Vitals collection device(s)
+              \item Drone
+              \item Secured military server
+              \item EMS/Hospital application
+            \end{enumerate}
+
+          \item \textbf{For each requirement, explain why that requirement is important}
+            \begin{enumerate}
+              \item Vitals collection device(s) - to collect patient data
+              \item Drone - to route patient data, connect patient to EMS and vice versa, connect EMS to inbound hospital ad vice versa, drop medical supplies
+              \item Secured military server - to host patient data
+              \item EMS/Hospital application - to organize and visualize patient(s) data
+            \end{enumerate}
+
+          \item \textbf{Explain how each customer requirement influences the various product requirements}
+            \begin{enumerate}
+              \item Security - infliences how communications are secured and how patient data is stored
+              \item Reliability - influences the types of sensors used in vitals collections device
+            \end{enumerate}
+          \clearpage
+
+          \item \textbf{Provide an "artist’s concept" drawing of your product}
+            \\\includegraphics[scale = 0.5]{C:/Users/alexm/OneDrive/Documents/College/IQP/ProjectReports/NeedsAssessmentProblemFormulation/Images/FlowOfInformation.png}
+        \end{enumerate}
+    \end{enumerate}
+    \newpage
+
+
+
+    \bibliographystyle{alpha}
+    \bibliography{NeedsAssessmentProblemFormulation}
+\end{document}
