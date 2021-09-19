@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/ext/wxwidgets/CMakeFiles/wxWidgets_external"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/ext/wxwidgets/CMakeFiles/wxWidgets_external.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/ext/wxwidgets/CMakeFiles/wxWidgets_external-complete.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-build.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-configure.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-download.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-install.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-mkdir.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-patch.rule"
+		},
+		{
+			"file" : "/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"wxWidgets_external"
+		],
+		"name" : "wxWidgets_external"
+	}
+}

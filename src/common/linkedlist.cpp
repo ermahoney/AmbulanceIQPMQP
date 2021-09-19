@@ -4,9 +4,10 @@
  *
  */
 
+#include "../../src/common/linkedlist.hpp"
+
 #include <stdlib.h>
 #include <string.h>
-#include "linkedlist.hpp"
 
 #define TRUE (1)
 #define FALSE (0)

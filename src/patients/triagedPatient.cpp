@@ -4,11 +4,13 @@
  *
  */
 
+#include "../../src/patients/triagedPatient.hpp"
+
 #include <vector>
 #include <iostream>
 #include <stdio.h>
-#include "../common/linkedlist.hpp"
-#include "triagedPatient.hpp"
+
+#include "../../src/common/linkedlist.hpp"
 
 /** Function that calculates the patients likelyhood of survival, i.e. 
  *  retrievable welfare

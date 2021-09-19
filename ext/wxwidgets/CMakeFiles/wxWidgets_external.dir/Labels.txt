@@ -1,0 +1,13 @@
+# Target labels
+ wxWidgets_external
+# Source files and their labels
+/Users/emilymahoney/git/AmbulanceIQPMQP/ext/wxwidgets/CMakeFiles/wxWidgets_external
+/Users/emilymahoney/git/AmbulanceIQPMQP/ext/wxwidgets/CMakeFiles/wxWidgets_external.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/ext/wxwidgets/CMakeFiles/wxWidgets_external-complete.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-build.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-configure.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-download.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-install.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-mkdir.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-patch.rule
+/Users/emilymahoney/git/AmbulanceIQPMQP/subprojects/Stamp/wxWidgets_external/wxWidgets_external-update.rule
