@@ -52,5 +52,6 @@ _deps
 
 # other
 build
+cmake-build-debug
 [Bb][Uu][Ii][Ll][Dd]
-
+.idea
